@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\test"
   ],
-  "SelectedNode": "\\C:\\Users\\sauln\\Source\\Repos\\Budget-App",
+  "SelectedNode": "\\test\\BudgetMainForm.Designer.cs",
   "PreviewInSolutionExplorer": false
 }
