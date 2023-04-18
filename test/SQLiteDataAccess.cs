@@ -6,7 +6,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 
-namespace test
+namespace Budget_App_Main
 {
     public class SQLiteDataAccess
     {

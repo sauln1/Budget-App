@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SQLite;
 using System.Windows.Forms;
-using test;
+using Budget_App_Main;
 
 //https://www.youtube.com/watch?v=ayp3tHEkRc0
 namespace Budget_App_Main
