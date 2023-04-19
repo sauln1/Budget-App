@@ -1,0 +1,16 @@
+C:\Users\sauln\Source\Repos\Budget-App\Budget_App_Main\bin\Release\ExpenseDb.db
+C:\Users\sauln\Source\Repos\Budget-App\Budget_App_Main\bin\Release\test.exe.config
+C:\Users\sauln\Source\Repos\Budget-App\Budget_App_Main\bin\Release\test.exe
+C:\Users\sauln\Source\Repos\Budget-App\Budget_App_Main\bin\Release\test.pdb
+C:\Users\sauln\Source\Repos\Budget-App\Budget_App_Main\bin\Release\Dapper.dll
+C:\Users\sauln\Source\Repos\Budget-App\Budget_App_Main\bin\Release\System.Data.SQLite.dll
+C:\Users\sauln\Source\Repos\Budget-App\Budget_App_Main\bin\Release\Dapper.xml
+C:\Users\sauln\Source\Repos\Budget-App\Budget_App_Main\bin\Release\System.Data.SQLite.xml
+C:\Users\sauln\Source\Repos\Budget-App\Budget_App_Main\obj\Release\Budget_App_Main.csproj.AssemblyReference.cache
+C:\Users\sauln\Source\Repos\Budget-App\Budget_App_Main\obj\Release\Budget_App_Main.BudgetMainForm.resources
+C:\Users\sauln\Source\Repos\Budget-App\Budget_App_Main\obj\Release\test.Properties.Resources.resources
+C:\Users\sauln\Source\Repos\Budget-App\Budget_App_Main\obj\Release\Budget_App_Main.csproj.GenerateResource.cache
+C:\Users\sauln\Source\Repos\Budget-App\Budget_App_Main\obj\Release\Budget_App_Main.csproj.CoreCompileInputs.cache
+C:\Users\sauln\Source\Repos\Budget-App\Budget_App_Main\obj\Release\Budget_App_Main.csproj.CopyComplete
+C:\Users\sauln\Source\Repos\Budget-App\Budget_App_Main\obj\Release\test.exe
+C:\Users\sauln\Source\Repos\Budget-App\Budget_App_Main\obj\Release\test.pdb

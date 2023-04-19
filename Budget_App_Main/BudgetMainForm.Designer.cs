@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Forms;
+
 namespace Budget_App_Main
 {
     partial class BudgetMainForm
@@ -32,12 +34,12 @@ namespace Budget_App_Main
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.addautono = new System.Windows.Forms.CheckBox();
+            this.addautoyes = new System.Windows.Forms.CheckBox();
+            this.addsplitno = new System.Windows.Forms.CheckBox();
+            this.addsplityes = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.adddateinput = new System.Windows.Forms.DateTimePicker();
-            this.addautono = new System.Windows.Forms.RadioButton();
-            this.addautoyes = new System.Windows.Forms.RadioButton();
-            this.addsplitno = new System.Windows.Forms.RadioButton();
-            this.addsplityes = new System.Windows.Forms.RadioButton();
             this.addfrequencyinput = new System.Windows.Forms.TextBox();
             this.addamountinput = new System.Windows.Forms.TextBox();
             this.addlinkinput = new System.Windows.Forms.TextBox();
@@ -53,6 +55,8 @@ namespace Budget_App_Main
             this.addname = new System.Windows.Forms.Label();
             this.expenselistlabel = new System.Windows.Forms.Label();
             this.expensedatagridview = new System.Windows.Forms.DataGridView();
+            this.dataGridViewDeleteButton = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.cleartablebutton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.expensedatagridview)).BeginInit();
@@ -79,12 +83,12 @@ namespace Budget_App_Main
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.button1);
-            this.tabPage4.Controls.Add(this.adddateinput);
             this.tabPage4.Controls.Add(this.addautono);
             this.tabPage4.Controls.Add(this.addautoyes);
             this.tabPage4.Controls.Add(this.addsplitno);
             this.tabPage4.Controls.Add(this.addsplityes);
+            this.tabPage4.Controls.Add(this.button1);
+            this.tabPage4.Controls.Add(this.adddateinput);
             this.tabPage4.Controls.Add(this.addfrequencyinput);
             this.tabPage4.Controls.Add(this.addamountinput);
             this.tabPage4.Controls.Add(this.addlinkinput);
@@ -105,9 +109,53 @@ namespace Budget_App_Main
             this.tabPage4.Text = "Add Expense";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // addautono
+            // 
+            this.addautono.AutoSize = true;
+            this.addautono.Location = new System.Drawing.Point(298, 400);
+            this.addautono.Name = "addautono";
+            this.addautono.Size = new System.Drawing.Size(96, 17);
+            this.addautono.TabIndex = 23;
+            this.addautono.Text = "Not Auto Debit";
+            this.addautono.UseVisualStyleBackColor = true;
+            this.addautono.CheckedChanged += new System.EventHandler(this.addautono_CheckedChanged);
+            // 
+            // addautoyes
+            // 
+            this.addautoyes.AutoSize = true;
+            this.addautoyes.Location = new System.Drawing.Point(202, 400);
+            this.addautoyes.Name = "addautoyes";
+            this.addautoyes.Size = new System.Drawing.Size(76, 17);
+            this.addautoyes.TabIndex = 22;
+            this.addautoyes.Text = "Auto Debit";
+            this.addautoyes.UseVisualStyleBackColor = true;
+            this.addautoyes.CheckedChanged += new System.EventHandler(this.addautoyes_CheckedChanged);
+            // 
+            // addsplitno
+            // 
+            this.addsplitno.AutoSize = true;
+            this.addsplitno.Location = new System.Drawing.Point(314, 250);
+            this.addsplitno.Name = "addsplitno";
+            this.addsplitno.Size = new System.Drawing.Size(66, 17);
+            this.addsplitno.TabIndex = 21;
+            this.addsplitno.Text = "Not Split";
+            this.addsplitno.UseVisualStyleBackColor = true;
+            this.addsplitno.CheckedChanged += new System.EventHandler(this.addsplitno_CheckedChanged);
+            // 
+            // addsplityes
+            // 
+            this.addsplityes.AutoSize = true;
+            this.addsplityes.Location = new System.Drawing.Point(202, 250);
+            this.addsplityes.Name = "addsplityes";
+            this.addsplityes.Size = new System.Drawing.Size(46, 17);
+            this.addsplityes.TabIndex = 20;
+            this.addsplityes.Text = "Split";
+            this.addsplityes.UseVisualStyleBackColor = true;
+            this.addsplityes.CheckedChanged += new System.EventHandler(this.addsplityes_CheckedChanged);
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(410, 541);
+            this.button1.Location = new System.Drawing.Point(400, 541);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(112, 23);
             this.button1.TabIndex = 19;
@@ -121,50 +169,6 @@ namespace Budget_App_Main
             this.adddateinput.Name = "adddateinput";
             this.adddateinput.Size = new System.Drawing.Size(192, 20);
             this.adddateinput.TabIndex = 18;
-            // 
-            // addautono
-            // 
-            this.addautono.AutoSize = true;
-            this.addautono.Location = new System.Drawing.Point(329, 400);
-            this.addautono.Name = "addautono";
-            this.addautono.Size = new System.Drawing.Size(95, 17);
-            this.addautono.TabIndex = 17;
-            this.addautono.TabStop = true;
-            this.addautono.Text = "Not Auto Debit";
-            this.addautono.UseVisualStyleBackColor = true;
-            // 
-            // addautoyes
-            // 
-            this.addautoyes.AutoSize = true;
-            this.addautoyes.Location = new System.Drawing.Point(202, 400);
-            this.addautoyes.Name = "addautoyes";
-            this.addautoyes.Size = new System.Drawing.Size(75, 17);
-            this.addautoyes.TabIndex = 16;
-            this.addautoyes.TabStop = true;
-            this.addautoyes.Text = "Auto Debit";
-            this.addautoyes.UseVisualStyleBackColor = true;
-            // 
-            // addsplitno
-            // 
-            this.addsplitno.AutoSize = true;
-            this.addsplitno.Location = new System.Drawing.Point(329, 250);
-            this.addsplitno.Name = "addsplitno";
-            this.addsplitno.Size = new System.Drawing.Size(65, 17);
-            this.addsplitno.TabIndex = 15;
-            this.addsplitno.TabStop = true;
-            this.addsplitno.Text = "Not Split";
-            this.addsplitno.UseVisualStyleBackColor = true;
-            // 
-            // addsplityes
-            // 
-            this.addsplityes.AutoSize = true;
-            this.addsplityes.Location = new System.Drawing.Point(202, 250);
-            this.addsplityes.Name = "addsplityes";
-            this.addsplityes.Size = new System.Drawing.Size(45, 17);
-            this.addsplityes.TabIndex = 14;
-            this.addsplityes.TabStop = true;
-            this.addsplityes.Text = "Split";
-            this.addsplityes.UseVisualStyleBackColor = true;
             // 
             // addfrequencyinput
             // 
@@ -276,7 +280,7 @@ namespace Budget_App_Main
             // expenselistlabel
             // 
             this.expenselistlabel.AutoSize = true;
-            this.expenselistlabel.Location = new System.Drawing.Point(929, 22);
+            this.expenselistlabel.Location = new System.Drawing.Point(561, 22);
             this.expenselistlabel.Name = "expenselistlabel";
             this.expenselistlabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.expenselistlabel.Size = new System.Drawing.Size(67, 13);
@@ -287,18 +291,43 @@ namespace Budget_App_Main
             // 
             this.expensedatagridview.AllowUserToAddRows = false;
             this.expensedatagridview.AllowUserToDeleteRows = false;
+            this.expensedatagridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.expensedatagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.expensedatagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewDeleteButton});
             this.expensedatagridview.Location = new System.Drawing.Point(561, 38);
+            this.expensedatagridview.MultiSelect = false;
             this.expensedatagridview.Name = "expensedatagridview";
             this.expensedatagridview.ReadOnly = true;
-            this.expensedatagridview.Size = new System.Drawing.Size(805, 571);
+            this.expensedatagridview.ShowEditingIcon = false;
+            this.expensedatagridview.Size = new System.Drawing.Size(1040, 571);
             this.expensedatagridview.TabIndex = 7;
+            // 
+            // dataGridViewDeleteButton
+            // 
+            this.dataGridViewDeleteButton.HeaderText = "Delete";
+            this.dataGridViewDeleteButton.Name = "dataGridViewDeleteButton";
+            this.dataGridViewDeleteButton.ReadOnly = true;
+            this.dataGridViewDeleteButton.Text = "Delete";
+            this.dataGridViewDeleteButton.UseColumnTextForButtonValue = true;
+            this.dataGridViewDeleteButton.Width = 44;
+            // 
+            // cleartablebutton
+            // 
+            this.cleartablebutton.Location = new System.Drawing.Point(1437, 13);
+            this.cleartablebutton.Name = "cleartablebutton";
+            this.cleartablebutton.Size = new System.Drawing.Size(75, 23);
+            this.cleartablebutton.TabIndex = 8;
+            this.cleartablebutton.Text = "Clear Table";
+            this.cleartablebutton.UseVisualStyleBackColor = true;
+            this.cleartablebutton.Click += new System.EventHandler(this.cleartablebutton_Click);
             // 
             // BudgetMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1378, 621);
+            this.ClientSize = new System.Drawing.Size(1605, 621);
+            this.Controls.Add(this.cleartablebutton);
             this.Controls.Add(this.expensedatagridview);
             this.Controls.Add(this.expenselistlabel);
             this.Controls.Add(this.tabControl1);
@@ -329,15 +358,17 @@ namespace Budget_App_Main
         private System.Windows.Forms.TextBox addaccountinput;
         private System.Windows.Forms.TextBox addnameinput;
         private System.Windows.Forms.TextBox addlinkinput;
-        private System.Windows.Forms.RadioButton addautono;
-        private System.Windows.Forms.RadioButton addautoyes;
-        private System.Windows.Forms.RadioButton addsplitno;
-        private System.Windows.Forms.RadioButton addsplityes;
         private System.Windows.Forms.TextBox addfrequencyinput;
         private System.Windows.Forms.TextBox addamountinput;
         private System.Windows.Forms.DateTimePicker adddateinput;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView expensedatagridview;
+        private System.Windows.Forms.CheckBox addsplitno;
+        private System.Windows.Forms.CheckBox addsplityes;
+        private System.Windows.Forms.CheckBox addautono;
+        private System.Windows.Forms.CheckBox addautoyes;
+        private DataGridViewButtonColumn dataGridViewDeleteButton;
+        private Button cleartablebutton;
     }
 }
 

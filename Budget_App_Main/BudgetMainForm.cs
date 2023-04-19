@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data.SQLite;
 using System.Windows.Forms;
-using Budget_App_Main;
 
 //https://www.youtube.com/watch?v=ayp3tHEkRc0
 namespace Budget_App_Main
@@ -56,10 +54,22 @@ namespace Budget_App_Main
             {
                 p.IsAutoDebit = false;
             }
-            p.Date = adddate.Text.ToString();
-            p.Link = addlink.Text;
+            p.Date = adddateinput.Text.ToString();
+            p.Link = addlinkinput.Text;
 
-            SQLiteDataAccess.SaveExpense(p);
+            string insertString = "INSERT INTO Expense(Name,Amount,FrequencyInWeeks,IsSplit,Account,IsAutoDebit,Date,Link) VALUES (" +
+                "'" + p.Name + "'," +
+                p.Amount + "," +
+                p.FrequencyInWeeks + "," +
+                "'" + p.IsSplit + "'," +
+                "'" + p.Account + "'," +
+                "'" + p.IsAutoDebit + "'," +
+                "'" + p.Date + "'," +
+                "'" + p.Link + "')";
+            SQLiteDataAccess.SaveExpense(insertString);
+
+            string message = insertString;
+            MessageBox.Show(message);
 
             expense.Add(p);
             WireUpExpenseList();
@@ -72,8 +82,46 @@ namespace Budget_App_Main
             addaccountinput.Text = "";
             addautoyes.Checked = true;
             addautono.Checked = false;
-            adddate.Text = "";
+            adddateinput.Text = "";
             addlinkinput.Text = "";
+        }
+
+        private void addsplityes_CheckedChanged(object sender, EventArgs e)
+        {
+            addsplitno.Checked = !addsplityes.Checked;
+        }
+
+        private void addsplitno_CheckedChanged(object sender, EventArgs e)
+        {
+            addsplityes.Checked = !addsplitno.Checked;
+        }
+
+        private void addautoyes_CheckedChanged(object sender, EventArgs e)
+        {
+            addautono.Checked = !addautoyes.Checked;
+        }
+
+        private void addautono_CheckedChanged(object sender, EventArgs e)
+        {
+            addautoyes.Checked = !addautono.Checked;
+        }
+
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Check if click is on specific column 
+            if (e.ColumnIndex == expensedatagridview.Columns["dataGridViewDeleteButton"].Index)
+            {
+                var RowID = expensedatagridview.Rows[e.RowIndex].Cells[1].Value.ToString();
+                string deleteString = "DELETE FROM Expense WHERE ID = " + RowID;
+
+                SQLiteDataAccess.DeleteExpense(deleteString);
+                LoadExpenseList();
+            }
+        }
+
+        private void cleartablebutton_Click(object sender, EventArgs e)
+        {
+            expense.Clear();
         }
     }
 }

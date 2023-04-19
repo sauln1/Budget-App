@@ -8,6 +8,7 @@ namespace Budget_App_Main
 {
     public class ExpenseModel
     {
+        public int ExpenseID { get; set; }
         public string Name { get; set; }
         public decimal Amount { get; set; }
         public int FrequencyInWeeks { get; set; }
@@ -16,12 +17,5 @@ namespace Budget_App_Main
         public bool IsAutoDebit { get; set; }
         public string Date { get; set; }
         public string Link { get; set; }
-        //    public string DataLoad
-        //    {
-        //        get
-        //        {
-        //            return $"{Name} {Amount} {FrequencyInWeeks} {IsSplit} {Account} {IsAutoDebit} {Date} {Link}";
-        //        }
-        //    }
     }
 }
