@@ -63,6 +63,7 @@
     <Compile Include="BudgetMainForm.Designer.cs">
       <DependentUpon>BudgetMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PaycheckModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLiteDataAccess.cs" />
