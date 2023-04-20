@@ -50,12 +50,12 @@ namespace Budget_App_Main
             this.grosspaycheckincomelabel = new System.Windows.Forms.Label();
             this.grossannualincomelabel = new System.Windows.Forms.Label();
             this.TabPaycheck = new System.Windows.Forms.TabPage();
+            this.paycheckfrequencyinput = new System.Windows.Forms.ComboBox();
             this.addpaycheckbutton = new System.Windows.Forms.Button();
             this.extrawithinput = new System.Windows.Forms.TextBox();
             this.totalmedwithinput = new System.Windows.Forms.TextBox();
             this.totalstatewithinput = new System.Windows.Forms.TextBox();
             this.totalfedwithinput = new System.Windows.Forms.TextBox();
-            this.paycheckfrequencyinput = new System.Windows.Forms.TextBox();
             this.paycheckamountatinput = new System.Windows.Forms.TextBox();
             this.paycheckamoutbtinput = new System.Windows.Forms.TextBox();
             this.paychecksourceinput = new System.Windows.Forms.TextBox();
@@ -275,12 +275,12 @@ namespace Budget_App_Main
             // 
             // TabPaycheck
             // 
+            this.TabPaycheck.Controls.Add(this.paycheckfrequencyinput);
             this.TabPaycheck.Controls.Add(this.addpaycheckbutton);
             this.TabPaycheck.Controls.Add(this.extrawithinput);
             this.TabPaycheck.Controls.Add(this.totalmedwithinput);
             this.TabPaycheck.Controls.Add(this.totalstatewithinput);
             this.TabPaycheck.Controls.Add(this.totalfedwithinput);
-            this.TabPaycheck.Controls.Add(this.paycheckfrequencyinput);
             this.TabPaycheck.Controls.Add(this.paycheckamountatinput);
             this.TabPaycheck.Controls.Add(this.paycheckamoutbtinput);
             this.TabPaycheck.Controls.Add(this.paychecksourceinput);
@@ -300,6 +300,17 @@ namespace Budget_App_Main
             this.TabPaycheck.TabIndex = 2;
             this.TabPaycheck.Text = "Add Paycheck";
             this.TabPaycheck.UseVisualStyleBackColor = true;
+            // 
+            // paycheckfrequencyinput
+            // 
+            this.paycheckfrequencyinput.DisplayMember = "Text";
+            this.paycheckfrequencyinput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.paycheckfrequencyinput.FormattingEnabled = true;
+            this.paycheckfrequencyinput.Location = new System.Drawing.Point(33, 266);
+            this.paycheckfrequencyinput.Name = "paycheckfrequencyinput";
+            this.paycheckfrequencyinput.Size = new System.Drawing.Size(146, 21);
+            this.paycheckfrequencyinput.TabIndex = 4;
+            this.paycheckfrequencyinput.ValueMember = "ID";
             // 
             // addpaycheckbutton
             // 
@@ -338,13 +349,6 @@ namespace Budget_App_Main
             this.totalfedwithinput.Name = "totalfedwithinput";
             this.totalfedwithinput.Size = new System.Drawing.Size(146, 20);
             this.totalfedwithinput.TabIndex = 5;
-            // 
-            // paycheckfrequencyinput
-            // 
-            this.paycheckfrequencyinput.Location = new System.Drawing.Point(33, 266);
-            this.paycheckfrequencyinput.Name = "paycheckfrequencyinput";
-            this.paycheckfrequencyinput.Size = new System.Drawing.Size(146, 20);
-            this.paycheckfrequencyinput.TabIndex = 4;
             // 
             // paycheckamountatinput
             // 
@@ -429,7 +433,6 @@ namespace Budget_App_Main
             this.paycheckdatagridview.ShowEditingIcon = false;
             this.paycheckdatagridview.Size = new System.Drawing.Size(475, 250);
             this.paycheckdatagridview.TabIndex = 12;
-            this.paycheckdatagridview.CellClick += paycheckdatagridview_CellContentClick;
             // 
             // PaycheckDataGridDeleteButton
             // 
@@ -697,7 +700,6 @@ namespace Budget_App_Main
             this.expensedatagridview.ShowEditingIcon = false;
             this.expensedatagridview.Size = new System.Drawing.Size(1040, 571);
             this.expensedatagridview.TabIndex = 7;
-            this.expensedatagridview.CellClick += expensedatagridview_CellContentClick;
             // 
             // ExpenseDataGridDeleteButton
             // 
@@ -788,12 +790,12 @@ namespace Budget_App_Main
         private TextBox totalmedwithinput;
         private TextBox totalstatewithinput;
         private TextBox totalfedwithinput;
-        private TextBox paycheckfrequencyinput;
         private TextBox paycheckamountatinput;
         private TextBox paycheckamoutbtinput;
         private TextBox paychecksourceinput;
         private Button addpaycheckbutton;
         private DataGridViewButtonColumn PaycheckDataGridDeleteButton;
+        public ComboBox paycheckfrequencyinput;
     }
 }
 

@@ -15,6 +15,7 @@ namespace Budget_App_Main
             InitializeComponent();
             LoadExpenseList();
             LoadPaycheckList();
+            InitComboItem();
         }
         private void LoadExpenseList()
         {
@@ -85,6 +86,7 @@ namespace Budget_App_Main
 
             expense.Add(p);
             WireUpExpenseList();
+            calculateValuesBudgetPage();
 
             MessageBox.Show("Expense Added");
 
@@ -125,6 +127,7 @@ namespace Budget_App_Main
 
             paycheck.Add(p);
             WireUpPaycheckList();
+            calculateValuesBudgetPage();
 
             MessageBox.Show("Paycheck Added");
 
@@ -156,7 +159,23 @@ namespace Budget_App_Main
         {
             addautoyes.Checked = !addautono.Checked;
         }
+        public class PaycheckFreqComboItem
+        {
+            public int ID { get; set; }
+            public string Text { get; set; }
+        }
+        private void InitComboItem()
+        {
+            List<PaycheckFreqComboItem> comboOptions = new List<PaycheckFreqComboItem>();
+            comboOptions.Add(new PaycheckFreqComboItem() { ID = 1, Text = "Weekly" });
+            comboOptions.Add(new PaycheckFreqComboItem() { ID = 2, Text = "Every 2 Weeks" });
+            comboOptions.Add(new PaycheckFreqComboItem() { ID = 3, Text = "Monthly" });
 
+            paycheckfrequencyinput.DataSource = comboOptions;
+            paycheckfrequencyinput.DisplayMember = "Text";
+            paycheckfrequencyinput.ValueMember = "ID";
+        }
+        
         private void expensedatagridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //Check if click is on specific column 
@@ -167,6 +186,7 @@ namespace Budget_App_Main
 
                 SQLiteDataAccess.DeleteExpense(deleteString);
                 LoadExpenseList();
+                calculateValuesBudgetPage();
 
                 MessageBox.Show("Expense Deleted");
             }
@@ -181,9 +201,86 @@ namespace Budget_App_Main
 
                 SQLiteDataAccess.DeletePaycheck(deleteString);
                 LoadPaycheckList();
+                calculateValuesBudgetPage();
 
                 MessageBox.Show("Paycheck Deleted");
             }
+        }
+        private void calculateValuesBudgetPage()
+        {
+            //This function acts as a 'Load' for the main page and is called after any changes are made to paychecks or expenses and also on app load.
+            //All values are calculated as 'monthly' originally.
+            decimal total_expense_amount = 0;
+            decimal total_expense_split = 0;
+            decimal total_paycheck_before = 0;
+            decimal total_paycheck_after = 0;
+            decimal paycheck_freq = 1;
+
+            //Calculate all expense amounts and if they are split and their frequency into one sum 
+            for(int i = 0; i < expensedatagridview.Rows.Count; i++)
+            {
+                var isSplit = expensedatagridview.Rows[i].Cells[5].Value;
+                if (isSplit.ToString() == "True")
+                {
+                    total_expense_split = 2;
+                }
+                else
+                {
+                    total_expense_split = 1;
+                }
+                //(Each Expense / Frequency in Weeks)/1 or 2 If the cost is Split
+                total_expense_amount += ((Convert.ToDecimal(expensedatagridview.Rows[i].Cells[3].Value) / 
+                    Convert.ToInt32(expensedatagridview.Rows[i].Cells[4].Value)) / total_expense_split);
+            }
+            //Sum all paycheck amounts before tax compared to frequency values
+            for(int i = 0; i < paycheckdatagridview.Rows.Count; i++)
+            {
+                if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Weekly")
+                {
+                    paycheck_freq = 4;
+                }
+                else if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Every 2 Weeks")
+                {
+                    paycheck_freq = 2;
+                }
+                else if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Monthly")
+                {
+                    paycheck_freq = 1;
+                }
+
+                total_paycheck_before += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[3].Value) *
+                    paycheck_freq);
+            }
+
+            //Sum all paycheck amounts before tax compared to frequency values
+            for (int i = 0; i < paycheckdatagridview.Rows.Count; i++)
+            {
+                if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Weekly")
+                {
+                    paycheck_freq = 4;
+                }
+                else if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Every 2 Weeks")
+                {
+                    paycheck_freq = 2;
+                }
+                else if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Monthly")
+                {
+                    paycheck_freq = 1;
+                }
+
+                total_paycheck_after += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[4].Value) *
+                    paycheck_freq);
+            }
+
+            //Display values
+            grossannualincometext.Text = Convert.ToString(total_paycheck_before * 12);
+            grosspaycheckincometext.Text = Convert.ToString(total_paycheck_before / paycheck_freq);
+            netannualincometext.Text = Convert.ToString(total_paycheck_after * 12);
+            netpaycheckincometext.Text = Convert.ToString(total_paycheck_after / paycheck_freq);
+            fluidannualincometext.Text = Convert.ToString((total_paycheck_after * 12) - (total_expense_amount * 12));
+            fluidpaycheckincometext.Text = Convert.ToString((total_paycheck_after / paycheck_freq)- (total_expense_amount / paycheck_freq));
+            totalannualexpensestext.Text = Convert.ToString(total_expense_amount * 12);
+            totalpaycheckexpensestext.Text = Convert.ToString(total_expense_amount / paycheck_freq);
         }
     }
 }

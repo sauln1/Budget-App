@@ -59,7 +59,5 @@ namespace Budget_App_Main
                 cnn.Execute(deleteString);
             }
         }
-
-
     }
 }
