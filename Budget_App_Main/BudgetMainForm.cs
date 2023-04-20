@@ -68,9 +68,6 @@ namespace Budget_App_Main
                 "'" + p.Link + "')";
             SQLiteDataAccess.SaveExpense(insertString);
 
-            string message = insertString;
-            MessageBox.Show(message);
-
             expense.Add(p);
             WireUpExpenseList();
 
@@ -109,7 +106,7 @@ namespace Budget_App_Main
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //Check if click is on specific column 
-            if (e.ColumnIndex == expensedatagridview.Columns["dataGridViewDeleteButton"].Index)
+            if (e.ColumnIndex == expensedatagridview.Columns["DataGridDeleteButton"].Index)
             {
                 var RowID = expensedatagridview.Rows[e.RowIndex].Cells[1].Value.ToString();
                 string deleteString = "DELETE FROM Expense WHERE ID = " + RowID;
@@ -117,11 +114,6 @@ namespace Budget_App_Main
                 SQLiteDataAccess.DeleteExpense(deleteString);
                 LoadExpenseList();
             }
-        }
-
-        private void cleartablebutton_Click(object sender, EventArgs e)
-        {
-            expense.Clear();
         }
     }
 }

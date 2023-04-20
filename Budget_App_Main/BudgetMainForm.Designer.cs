@@ -55,8 +55,6 @@ namespace Budget_App_Main
             this.addname = new System.Windows.Forms.Label();
             this.expenselistlabel = new System.Windows.Forms.Label();
             this.expensedatagridview = new System.Windows.Forms.DataGridView();
-            this.dataGridViewDeleteButton = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.cleartablebutton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.expensedatagridview)).BeginInit();
@@ -115,7 +113,7 @@ namespace Budget_App_Main
             this.addautono.Location = new System.Drawing.Point(298, 400);
             this.addautono.Name = "addautono";
             this.addautono.Size = new System.Drawing.Size(96, 17);
-            this.addautono.TabIndex = 23;
+            this.addautono.TabIndex = 8;
             this.addautono.Text = "Not Auto Debit";
             this.addautono.UseVisualStyleBackColor = true;
             this.addautono.CheckedChanged += new System.EventHandler(this.addautono_CheckedChanged);
@@ -126,7 +124,7 @@ namespace Budget_App_Main
             this.addautoyes.Location = new System.Drawing.Point(202, 400);
             this.addautoyes.Name = "addautoyes";
             this.addautoyes.Size = new System.Drawing.Size(76, 17);
-            this.addautoyes.TabIndex = 22;
+            this.addautoyes.TabIndex = 7;
             this.addautoyes.Text = "Auto Debit";
             this.addautoyes.UseVisualStyleBackColor = true;
             this.addautoyes.CheckedChanged += new System.EventHandler(this.addautoyes_CheckedChanged);
@@ -137,7 +135,7 @@ namespace Budget_App_Main
             this.addsplitno.Location = new System.Drawing.Point(314, 250);
             this.addsplitno.Name = "addsplitno";
             this.addsplitno.Size = new System.Drawing.Size(66, 17);
-            this.addsplitno.TabIndex = 21;
+            this.addsplitno.TabIndex = 5;
             this.addsplitno.Text = "Not Split";
             this.addsplitno.UseVisualStyleBackColor = true;
             this.addsplitno.CheckedChanged += new System.EventHandler(this.addsplitno_CheckedChanged);
@@ -148,7 +146,7 @@ namespace Budget_App_Main
             this.addsplityes.Location = new System.Drawing.Point(202, 250);
             this.addsplityes.Name = "addsplityes";
             this.addsplityes.Size = new System.Drawing.Size(46, 17);
-            this.addsplityes.TabIndex = 20;
+            this.addsplityes.TabIndex = 4;
             this.addsplityes.Text = "Split";
             this.addsplityes.UseVisualStyleBackColor = true;
             this.addsplityes.CheckedChanged += new System.EventHandler(this.addsplityes_CheckedChanged);
@@ -158,7 +156,7 @@ namespace Budget_App_Main
             this.button1.Location = new System.Drawing.Point(400, 541);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(112, 23);
-            this.button1.TabIndex = 19;
+            this.button1.TabIndex = 11;
             this.button1.Text = "Save Expense";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.AddExpenseButton_Click);
@@ -168,42 +166,42 @@ namespace Budget_App_Main
             this.adddateinput.Location = new System.Drawing.Point(202, 475);
             this.adddateinput.Name = "adddateinput";
             this.adddateinput.Size = new System.Drawing.Size(192, 20);
-            this.adddateinput.TabIndex = 18;
+            this.adddateinput.TabIndex = 9;
             // 
             // addfrequencyinput
             // 
             this.addfrequencyinput.Location = new System.Drawing.Point(202, 175);
             this.addfrequencyinput.Name = "addfrequencyinput";
             this.addfrequencyinput.Size = new System.Drawing.Size(192, 20);
-            this.addfrequencyinput.TabIndex = 13;
+            this.addfrequencyinput.TabIndex = 3;
             // 
             // addamountinput
             // 
             this.addamountinput.Location = new System.Drawing.Point(202, 100);
             this.addamountinput.Name = "addamountinput";
             this.addamountinput.Size = new System.Drawing.Size(192, 20);
-            this.addamountinput.TabIndex = 12;
+            this.addamountinput.TabIndex = 2;
             // 
             // addlinkinput
             // 
             this.addlinkinput.Location = new System.Drawing.Point(202, 543);
             this.addlinkinput.Name = "addlinkinput";
             this.addlinkinput.Size = new System.Drawing.Size(192, 20);
-            this.addlinkinput.TabIndex = 11;
+            this.addlinkinput.TabIndex = 10;
             // 
             // addaccountinput
             // 
             this.addaccountinput.Location = new System.Drawing.Point(202, 325);
             this.addaccountinput.Name = "addaccountinput";
             this.addaccountinput.Size = new System.Drawing.Size(192, 20);
-            this.addaccountinput.TabIndex = 10;
+            this.addaccountinput.TabIndex = 6;
             // 
             // addnameinput
             // 
             this.addnameinput.Location = new System.Drawing.Point(202, 20);
             this.addnameinput.Name = "addnameinput";
             this.addnameinput.Size = new System.Drawing.Size(192, 20);
-            this.addnameinput.TabIndex = 9;
+            this.addnameinput.TabIndex = 1;
             // 
             // addlink
             // 
@@ -286,48 +284,37 @@ namespace Budget_App_Main
             this.expenselistlabel.Size = new System.Drawing.Size(67, 13);
             this.expenselistlabel.TabIndex = 2;
             this.expenselistlabel.Text = "Expense List";
+            //
+            // DataGridDeleteButton
+            //
+            var DataGridDeleteButton = new DataGridViewButtonColumn();
+            DataGridDeleteButton.Name = "DataGridDeleteButton";
+            DataGridDeleteButton.HeaderText = "Delete";
+            DataGridDeleteButton.Text = "Delete";
+            DataGridDeleteButton.UseColumnTextForButtonValue = true;
             // 
             // expensedatagridview
             // 
             this.expensedatagridview.AllowUserToAddRows = false;
             this.expensedatagridview.AllowUserToDeleteRows = false;
-            this.expensedatagridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.expensedatagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.expensedatagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewDeleteButton});
+            this.expensedatagridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.expensedatagridview.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.expensedatagridview.Location = new System.Drawing.Point(561, 38);
             this.expensedatagridview.MultiSelect = false;
             this.expensedatagridview.Name = "expensedatagridview";
             this.expensedatagridview.ReadOnly = true;
+            this.expensedatagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.expensedatagridview.ShowEditingIcon = false;
             this.expensedatagridview.Size = new System.Drawing.Size(1040, 571);
             this.expensedatagridview.TabIndex = 7;
-            // 
-            // dataGridViewDeleteButton
-            // 
-            this.dataGridViewDeleteButton.HeaderText = "Delete";
-            this.dataGridViewDeleteButton.Name = "dataGridViewDeleteButton";
-            this.dataGridViewDeleteButton.ReadOnly = true;
-            this.dataGridViewDeleteButton.Text = "Delete";
-            this.dataGridViewDeleteButton.UseColumnTextForButtonValue = true;
-            this.dataGridViewDeleteButton.Width = 44;
-            // 
-            // cleartablebutton
-            // 
-            this.cleartablebutton.Location = new System.Drawing.Point(1437, 13);
-            this.cleartablebutton.Name = "cleartablebutton";
-            this.cleartablebutton.Size = new System.Drawing.Size(75, 23);
-            this.cleartablebutton.TabIndex = 8;
-            this.cleartablebutton.Text = "Clear Table";
-            this.cleartablebutton.UseVisualStyleBackColor = true;
-            this.cleartablebutton.Click += new System.EventHandler(this.cleartablebutton_Click);
+            this.expensedatagridview.Columns.Add(DataGridDeleteButton);
+            this.expensedatagridview.CellClick += dataGridView_CellContentClick;
             // 
             // BudgetMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1605, 621);
-            this.Controls.Add(this.cleartablebutton);
             this.Controls.Add(this.expensedatagridview);
             this.Controls.Add(this.expenselistlabel);
             this.Controls.Add(this.tabControl1);
@@ -339,7 +326,6 @@ namespace Budget_App_Main
             ((System.ComponentModel.ISupportInitialize)(this.expensedatagridview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -367,8 +353,6 @@ namespace Budget_App_Main
         private System.Windows.Forms.CheckBox addsplityes;
         private System.Windows.Forms.CheckBox addautono;
         private System.Windows.Forms.CheckBox addautoyes;
-        private DataGridViewButtonColumn dataGridViewDeleteButton;
-        private Button cleartablebutton;
     }
 }
 
