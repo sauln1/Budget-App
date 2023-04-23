@@ -168,46 +168,50 @@ namespace Budget_App_Main
 
             SqlParameter sourceParameter = new SqlParameter();
             sourceParameter.ParameterName = "@source";
-            sourceParameter.Value = p.Source;
+            sourceParameter.Value = paychecksourceinput.Text;
             SqlParameter btParameter = new SqlParameter();
             btParameter.ParameterName = "@bt";
-            btParameter.Value = p.Amount_Before_Tax;
+            btParameter.Value = paycheckamoutbtinput.Value;
             SqlParameter atParameter = new SqlParameter();
             atParameter.ParameterName = "@at";
-            atParameter.Value = p.Amount_After_Tax;
+            atParameter.Value = paycheckamountatinput.Value;
             SqlParameter freqParameter = new SqlParameter();
             freqParameter.ParameterName = "@freq";
-            freqParameter.Value = p.Frequency;
+            freqParameter.Value = paycheckfrequencyinput.Text;
             SqlParameter fedParameter = new SqlParameter();
             fedParameter.ParameterName = "@fed";
-            fedParameter.Value = p.Federal_Witholding;
+            fedParameter.Value = totalfedwithinput.Value;
             SqlParameter stParameter = new SqlParameter();
             stParameter.ParameterName = "@st";
-            stParameter.Value = p.State_Witholding;
+            stParameter.Value = totalstatewithinput.Value;
             SqlParameter medParameter = new SqlParameter();
             medParameter.ParameterName = "@med";
-            medParameter.Value = p.Med_SS_401K_Witholding;
+            medParameter.Value = totalmedwithinput.Value;
             SqlParameter extraParameter = new SqlParameter();
             extraParameter.ParameterName = "@extra";
-            extraParameter.Value = p.Extra_Witholding;
+            extraParameter.Value = extrawithinput.Value;
             SqlParameter totalParameter = new SqlParameter();
             totalParameter.ParameterName = "@total";
             if(p.Frequency == "Weekly")
             {
-                totalParameter.Value += Convert.ToString(p.Amount_After_Tax * 4);
+                totalParameter.Value += Convert.ToString(paycheckamountatinput.Value * 4);
             }
             else if(p.Frequency == "Every 2 Weeks")
             {
-                totalParameter.Value += Convert.ToString(p.Amount_After_Tax * 2);
+                totalParameter.Value += Convert.ToString(paycheckamountatinput.Value * 2);
             }
             else if (p.Frequency == "Monthly")
             {
-                totalParameter.Value += Convert.ToString(p.Amount_After_Tax);
+                totalParameter.Value += Convert.ToString(paycheckamountatinput.Value);
             };
 
-            string insertString = "INSERT INTO Paycheck(Source, AmountBeforeTax, AmountAfterTax, Frequency, FederalWitholding, StateWitholding, MedicareSS401KWitholding, ExtraWitholding, TotalMonthly) " +
+        //https://learn.microsoft.com/en-us/dotnet/standard/data/sqlite/parameters
+
+            string insertString = @"INSERT INTO Paycheck(Source, AmountBeforeTax, AmountAfterTax, Frequency, FederalWitholding, StateWitholding, MedicareSS401KWitholding, ExtraWitholding, TotalMonthly) " +
                 "VALUES (@source, @bt, @at, @freq, @fed, @st, @med, @extra, @total);";
 
+            string message = insertString;
+            MessageBox.Show(message);
             SQLiteDataAccess.SavePaycheck(insertString);
 
             paycheck.Add(p);
