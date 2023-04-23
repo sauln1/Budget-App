@@ -50,14 +50,14 @@ namespace Budget_App_Main
             this.grosspaycheckincomelabel = new System.Windows.Forms.Label();
             this.grossannualincomelabel = new System.Windows.Forms.Label();
             this.TabPaycheck = new System.Windows.Forms.TabPage();
+            this.extrawithinput = new System.Windows.Forms.NumericUpDown();
+            this.totalmedwithinput = new System.Windows.Forms.NumericUpDown();
+            this.totalstatewithinput = new System.Windows.Forms.NumericUpDown();
+            this.totalfedwithinput = new System.Windows.Forms.NumericUpDown();
+            this.paycheckamountatinput = new System.Windows.Forms.NumericUpDown();
+            this.paycheckamoutbtinput = new System.Windows.Forms.NumericUpDown();
             this.paycheckfrequencyinput = new System.Windows.Forms.ComboBox();
             this.addpaycheckbutton = new System.Windows.Forms.Button();
-            this.extrawithinput = new System.Windows.Forms.TextBox();
-            this.totalmedwithinput = new System.Windows.Forms.TextBox();
-            this.totalstatewithinput = new System.Windows.Forms.TextBox();
-            this.totalfedwithinput = new System.Windows.Forms.TextBox();
-            this.paycheckamountatinput = new System.Windows.Forms.TextBox();
-            this.paycheckamoutbtinput = new System.Windows.Forms.TextBox();
             this.paychecksourceinput = new System.Windows.Forms.TextBox();
             this.extrawitholding = new System.Windows.Forms.Label();
             this.totalotherwitholding = new System.Windows.Forms.Label();
@@ -71,18 +71,16 @@ namespace Budget_App_Main
             this.paycheckamountbeforetax = new System.Windows.Forms.Label();
             this.paychecksource = new System.Windows.Forms.Label();
             this.TabExpense = new System.Windows.Forms.TabPage();
+            this.addfrequencyinput = new System.Windows.Forms.NumericUpDown();
+            this.addamountinput = new System.Windows.Forms.NumericUpDown();
             this.addautono = new System.Windows.Forms.CheckBox();
             this.addautoyes = new System.Windows.Forms.CheckBox();
             this.addsplitno = new System.Windows.Forms.CheckBox();
             this.addsplityes = new System.Windows.Forms.CheckBox();
             this.addexpensebutton = new System.Windows.Forms.Button();
             this.adddateinput = new System.Windows.Forms.DateTimePicker();
-            this.addfrequencyinput = new System.Windows.Forms.TextBox();
-            this.addamountinput = new System.Windows.Forms.TextBox();
-            this.addlinkinput = new System.Windows.Forms.TextBox();
             this.addaccountinput = new System.Windows.Forms.TextBox();
             this.addnameinput = new System.Windows.Forms.TextBox();
-            this.addlink = new System.Windows.Forms.Label();
             this.adddate = new System.Windows.Forms.Label();
             this.addautodebit = new System.Windows.Forms.Label();
             this.addaccount = new System.Windows.Forms.Label();
@@ -96,8 +94,16 @@ namespace Budget_App_Main
             this.tabControl1.SuspendLayout();
             this.TabBudget.SuspendLayout();
             this.TabPaycheck.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.extrawithinput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalmedwithinput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalstatewithinput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalfedwithinput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paycheckamountatinput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paycheckamoutbtinput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paycheckdatagridview)).BeginInit();
             this.TabExpense.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.addfrequencyinput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addamountinput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expensedatagridview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,76 +145,116 @@ namespace Budget_App_Main
             // 
             // totalpaycheckexpensestext
             // 
+            this.totalpaycheckexpensestext.AutoEllipsis = true;
             this.totalpaycheckexpensestext.AutoSize = true;
-            this.totalpaycheckexpensestext.Location = new System.Drawing.Point(300, 550);
+            this.totalpaycheckexpensestext.BackColor = System.Drawing.Color.LightGreen;
+            this.totalpaycheckexpensestext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.totalpaycheckexpensestext.Location = new System.Drawing.Point(253, 550);
+            this.totalpaycheckexpensestext.MinimumSize = new System.Drawing.Size(130, 2);
             this.totalpaycheckexpensestext.Name = "totalpaycheckexpensestext";
-            this.totalpaycheckexpensestext.Size = new System.Drawing.Size(0, 13);
+            this.totalpaycheckexpensestext.Size = new System.Drawing.Size(130, 15);
             this.totalpaycheckexpensestext.TabIndex = 15;
+            this.totalpaycheckexpensestext.Text = "0";
             // 
             // totalannualexpensestext
             // 
+            this.totalannualexpensestext.AutoEllipsis = true;
             this.totalannualexpensestext.AutoSize = true;
-            this.totalannualexpensestext.Location = new System.Drawing.Point(300, 475);
+            this.totalannualexpensestext.BackColor = System.Drawing.Color.LightGreen;
+            this.totalannualexpensestext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.totalannualexpensestext.Location = new System.Drawing.Point(253, 475);
+            this.totalannualexpensestext.MinimumSize = new System.Drawing.Size(130, 2);
             this.totalannualexpensestext.Name = "totalannualexpensestext";
-            this.totalannualexpensestext.Size = new System.Drawing.Size(0, 13);
+            this.totalannualexpensestext.Size = new System.Drawing.Size(130, 15);
             this.totalannualexpensestext.TabIndex = 14;
+            this.totalannualexpensestext.Text = "0";
             // 
             // fluidpaycheckincometext
             // 
+            this.fluidpaycheckincometext.AutoEllipsis = true;
             this.fluidpaycheckincometext.AutoSize = true;
-            this.fluidpaycheckincometext.Location = new System.Drawing.Point(300, 400);
+            this.fluidpaycheckincometext.BackColor = System.Drawing.Color.Bisque;
+            this.fluidpaycheckincometext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.fluidpaycheckincometext.Location = new System.Drawing.Point(253, 400);
+            this.fluidpaycheckincometext.MinimumSize = new System.Drawing.Size(130, 2);
             this.fluidpaycheckincometext.Name = "fluidpaycheckincometext";
-            this.fluidpaycheckincometext.Size = new System.Drawing.Size(0, 13);
+            this.fluidpaycheckincometext.Size = new System.Drawing.Size(130, 15);
             this.fluidpaycheckincometext.TabIndex = 13;
+            this.fluidpaycheckincometext.Text = "0";
             // 
             // fluidannualincometext
             // 
+            this.fluidannualincometext.AutoEllipsis = true;
             this.fluidannualincometext.AutoSize = true;
-            this.fluidannualincometext.Location = new System.Drawing.Point(300, 325);
+            this.fluidannualincometext.BackColor = System.Drawing.Color.Bisque;
+            this.fluidannualincometext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.fluidannualincometext.Location = new System.Drawing.Point(253, 325);
+            this.fluidannualincometext.MinimumSize = new System.Drawing.Size(130, 2);
             this.fluidannualincometext.Name = "fluidannualincometext";
-            this.fluidannualincometext.Size = new System.Drawing.Size(0, 13);
+            this.fluidannualincometext.Size = new System.Drawing.Size(130, 15);
             this.fluidannualincometext.TabIndex = 12;
+            this.fluidannualincometext.Text = "0";
             // 
             // netpaycheckincometext
             // 
+            this.netpaycheckincometext.AutoEllipsis = true;
             this.netpaycheckincometext.AutoSize = true;
-            this.netpaycheckincometext.Location = new System.Drawing.Point(300, 250);
+            this.netpaycheckincometext.BackColor = System.Drawing.Color.Bisque;
+            this.netpaycheckincometext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.netpaycheckincometext.Location = new System.Drawing.Point(253, 250);
+            this.netpaycheckincometext.MinimumSize = new System.Drawing.Size(130, 2);
             this.netpaycheckincometext.Name = "netpaycheckincometext";
-            this.netpaycheckincometext.Size = new System.Drawing.Size(0, 13);
+            this.netpaycheckincometext.Size = new System.Drawing.Size(130, 15);
             this.netpaycheckincometext.TabIndex = 11;
+            this.netpaycheckincometext.Text = "0";
             // 
             // netannualincometext
             // 
+            this.netannualincometext.AutoEllipsis = true;
             this.netannualincometext.AutoSize = true;
-            this.netannualincometext.Location = new System.Drawing.Point(300, 175);
+            this.netannualincometext.BackColor = System.Drawing.Color.Bisque;
+            this.netannualincometext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.netannualincometext.Location = new System.Drawing.Point(253, 175);
+            this.netannualincometext.MinimumSize = new System.Drawing.Size(130, 2);
             this.netannualincometext.Name = "netannualincometext";
-            this.netannualincometext.Size = new System.Drawing.Size(0, 13);
+            this.netannualincometext.Size = new System.Drawing.Size(130, 15);
             this.netannualincometext.TabIndex = 10;
+            this.netannualincometext.Text = "0";
             // 
             // grosspaycheckincometext
             // 
+            this.grosspaycheckincometext.AutoEllipsis = true;
             this.grosspaycheckincometext.AutoSize = true;
-            this.grosspaycheckincometext.Location = new System.Drawing.Point(300, 100);
+            this.grosspaycheckincometext.BackColor = System.Drawing.Color.Bisque;
+            this.grosspaycheckincometext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.grosspaycheckincometext.Location = new System.Drawing.Point(253, 100);
+            this.grosspaycheckincometext.MinimumSize = new System.Drawing.Size(130, 2);
             this.grosspaycheckincometext.Name = "grosspaycheckincometext";
-            this.grosspaycheckincometext.Size = new System.Drawing.Size(0, 13);
+            this.grosspaycheckincometext.Size = new System.Drawing.Size(130, 15);
             this.grosspaycheckincometext.TabIndex = 9;
+            this.grosspaycheckincometext.Text = "0";
             // 
             // grossannualincometext
             // 
+            this.grossannualincometext.AutoEllipsis = true;
             this.grossannualincometext.AutoSize = true;
-            this.grossannualincometext.Location = new System.Drawing.Point(300, 25);
+            this.grossannualincometext.BackColor = System.Drawing.Color.Bisque;
+            this.grossannualincometext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.grossannualincometext.Location = new System.Drawing.Point(253, 25);
+            this.grossannualincometext.MinimumSize = new System.Drawing.Size(130, 2);
             this.grossannualincometext.Name = "grossannualincometext";
-            this.grossannualincometext.Size = new System.Drawing.Size(0, 13);
+            this.grossannualincometext.Size = new System.Drawing.Size(130, 15);
             this.grossannualincometext.TabIndex = 8;
+            this.grossannualincometext.Text = "0";
             // 
             // totalpaycheckexpenseslabel
             // 
             this.totalpaycheckexpenseslabel.AutoSize = true;
             this.totalpaycheckexpenseslabel.Location = new System.Drawing.Point(30, 550);
             this.totalpaycheckexpenseslabel.Name = "totalpaycheckexpenseslabel";
-            this.totalpaycheckexpenseslabel.Size = new System.Drawing.Size(131, 13);
+            this.totalpaycheckexpenseslabel.Size = new System.Drawing.Size(120, 13);
             this.totalpaycheckexpenseslabel.TabIndex = 7;
-            this.totalpaycheckexpenseslabel.Text = "Total Paycheck Expenses";
+            this.totalpaycheckexpenseslabel.Text = "Total Monthly Expenses";
             // 
             // totalannualexpenseslabel
             // 
@@ -275,14 +321,14 @@ namespace Budget_App_Main
             // 
             // TabPaycheck
             // 
-            this.TabPaycheck.Controls.Add(this.paycheckfrequencyinput);
-            this.TabPaycheck.Controls.Add(this.addpaycheckbutton);
             this.TabPaycheck.Controls.Add(this.extrawithinput);
             this.TabPaycheck.Controls.Add(this.totalmedwithinput);
             this.TabPaycheck.Controls.Add(this.totalstatewithinput);
             this.TabPaycheck.Controls.Add(this.totalfedwithinput);
             this.TabPaycheck.Controls.Add(this.paycheckamountatinput);
             this.TabPaycheck.Controls.Add(this.paycheckamoutbtinput);
+            this.TabPaycheck.Controls.Add(this.paycheckfrequencyinput);
+            this.TabPaycheck.Controls.Add(this.addpaycheckbutton);
             this.TabPaycheck.Controls.Add(this.paychecksourceinput);
             this.TabPaycheck.Controls.Add(this.extrawitholding);
             this.TabPaycheck.Controls.Add(this.totalotherwitholding);
@@ -300,6 +346,84 @@ namespace Budget_App_Main
             this.TabPaycheck.TabIndex = 2;
             this.TabPaycheck.Text = "Add Paycheck";
             this.TabPaycheck.UseVisualStyleBackColor = true;
+            // 
+            // extrawithinput
+            // 
+            this.extrawithinput.DecimalPlaces = 2;
+            this.extrawithinput.Location = new System.Drawing.Point(359, 267);
+            this.extrawithinput.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.extrawithinput.Name = "extrawithinput";
+            this.extrawithinput.Size = new System.Drawing.Size(146, 20);
+            this.extrawithinput.TabIndex = 8;
+            // 
+            // totalmedwithinput
+            // 
+            this.totalmedwithinput.DecimalPlaces = 2;
+            this.totalmedwithinput.Location = new System.Drawing.Point(359, 192);
+            this.totalmedwithinput.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.totalmedwithinput.Name = "totalmedwithinput";
+            this.totalmedwithinput.Size = new System.Drawing.Size(146, 20);
+            this.totalmedwithinput.TabIndex = 7;
+            // 
+            // totalstatewithinput
+            // 
+            this.totalstatewithinput.DecimalPlaces = 2;
+            this.totalstatewithinput.Location = new System.Drawing.Point(359, 117);
+            this.totalstatewithinput.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.totalstatewithinput.Name = "totalstatewithinput";
+            this.totalstatewithinput.Size = new System.Drawing.Size(146, 20);
+            this.totalstatewithinput.TabIndex = 6;
+            // 
+            // totalfedwithinput
+            // 
+            this.totalfedwithinput.DecimalPlaces = 2;
+            this.totalfedwithinput.Location = new System.Drawing.Point(359, 42);
+            this.totalfedwithinput.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.totalfedwithinput.Name = "totalfedwithinput";
+            this.totalfedwithinput.Size = new System.Drawing.Size(146, 20);
+            this.totalfedwithinput.TabIndex = 5;
+            // 
+            // paycheckamountatinput
+            // 
+            this.paycheckamountatinput.DecimalPlaces = 2;
+            this.paycheckamountatinput.Location = new System.Drawing.Point(33, 192);
+            this.paycheckamountatinput.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.paycheckamountatinput.Name = "paycheckamountatinput";
+            this.paycheckamountatinput.Size = new System.Drawing.Size(146, 20);
+            this.paycheckamountatinput.TabIndex = 3;
+            // 
+            // paycheckamoutbtinput
+            // 
+            this.paycheckamoutbtinput.DecimalPlaces = 2;
+            this.paycheckamoutbtinput.Location = new System.Drawing.Point(33, 117);
+            this.paycheckamoutbtinput.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.paycheckamoutbtinput.Name = "paycheckamoutbtinput";
+            this.paycheckamoutbtinput.Size = new System.Drawing.Size(146, 20);
+            this.paycheckamoutbtinput.TabIndex = 2;
             // 
             // paycheckfrequencyinput
             // 
@@ -321,48 +445,6 @@ namespace Budget_App_Main
             this.addpaycheckbutton.Text = "Save Paycheck";
             this.addpaycheckbutton.UseVisualStyleBackColor = true;
             this.addpaycheckbutton.Click += new System.EventHandler(this.addpaycheckbutton_Click);
-            // 
-            // extrawithinput
-            // 
-            this.extrawithinput.Location = new System.Drawing.Point(359, 266);
-            this.extrawithinput.Name = "extrawithinput";
-            this.extrawithinput.Size = new System.Drawing.Size(146, 20);
-            this.extrawithinput.TabIndex = 8;
-            // 
-            // totalmedwithinput
-            // 
-            this.totalmedwithinput.Location = new System.Drawing.Point(359, 191);
-            this.totalmedwithinput.Name = "totalmedwithinput";
-            this.totalmedwithinput.Size = new System.Drawing.Size(146, 20);
-            this.totalmedwithinput.TabIndex = 7;
-            // 
-            // totalstatewithinput
-            // 
-            this.totalstatewithinput.Location = new System.Drawing.Point(359, 116);
-            this.totalstatewithinput.Name = "totalstatewithinput";
-            this.totalstatewithinput.Size = new System.Drawing.Size(146, 20);
-            this.totalstatewithinput.TabIndex = 6;
-            // 
-            // totalfedwithinput
-            // 
-            this.totalfedwithinput.Location = new System.Drawing.Point(359, 41);
-            this.totalfedwithinput.Name = "totalfedwithinput";
-            this.totalfedwithinput.Size = new System.Drawing.Size(146, 20);
-            this.totalfedwithinput.TabIndex = 5;
-            // 
-            // paycheckamountatinput
-            // 
-            this.paycheckamountatinput.Location = new System.Drawing.Point(33, 191);
-            this.paycheckamountatinput.Name = "paycheckamountatinput";
-            this.paycheckamountatinput.Size = new System.Drawing.Size(146, 20);
-            this.paycheckamountatinput.TabIndex = 3;
-            // 
-            // paycheckamoutbtinput
-            // 
-            this.paycheckamoutbtinput.Location = new System.Drawing.Point(33, 116);
-            this.paycheckamoutbtinput.Name = "paycheckamoutbtinput";
-            this.paycheckamoutbtinput.Size = new System.Drawing.Size(146, 20);
-            this.paycheckamoutbtinput.TabIndex = 2;
             // 
             // paychecksourceinput
             // 
@@ -421,10 +503,14 @@ namespace Budget_App_Main
             // 
             this.paycheckdatagridview.AllowUserToAddRows = false;
             this.paycheckdatagridview.AllowUserToDeleteRows = false;
+            this.paycheckdatagridview.AllowUserToResizeColumns = false;
+            this.paycheckdatagridview.AllowUserToResizeRows = false;
             this.paycheckdatagridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.paycheckdatagridview.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            this.paycheckdatagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.paycheckdatagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.PaycheckDataGridDeleteButton});
+            this.paycheckdatagridview.GridColor = System.Drawing.Color.Bisque;
             this.paycheckdatagridview.Location = new System.Drawing.Point(30, 325);
             this.paycheckdatagridview.MultiSelect = false;
             this.paycheckdatagridview.Name = "paycheckdatagridview";
@@ -480,18 +566,16 @@ namespace Budget_App_Main
             // 
             // TabExpense
             // 
+            this.TabExpense.Controls.Add(this.addfrequencyinput);
+            this.TabExpense.Controls.Add(this.addamountinput);
             this.TabExpense.Controls.Add(this.addautono);
             this.TabExpense.Controls.Add(this.addautoyes);
             this.TabExpense.Controls.Add(this.addsplitno);
             this.TabExpense.Controls.Add(this.addsplityes);
             this.TabExpense.Controls.Add(this.addexpensebutton);
             this.TabExpense.Controls.Add(this.adddateinput);
-            this.TabExpense.Controls.Add(this.addfrequencyinput);
-            this.TabExpense.Controls.Add(this.addamountinput);
-            this.TabExpense.Controls.Add(this.addlinkinput);
             this.TabExpense.Controls.Add(this.addaccountinput);
             this.TabExpense.Controls.Add(this.addnameinput);
-            this.TabExpense.Controls.Add(this.addlink);
             this.TabExpense.Controls.Add(this.adddate);
             this.TabExpense.Controls.Add(this.addautodebit);
             this.TabExpense.Controls.Add(this.addaccount);
@@ -505,6 +589,41 @@ namespace Budget_App_Main
             this.TabExpense.TabIndex = 1;
             this.TabExpense.Text = "Add Expense";
             this.TabExpense.UseVisualStyleBackColor = true;
+            // 
+            // addfrequencyinput
+            // 
+            this.addfrequencyinput.Location = new System.Drawing.Point(202, 168);
+            this.addfrequencyinput.Maximum = new decimal(new int[] {
+            52,
+            0,
+            0,
+            0});
+            this.addfrequencyinput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.addfrequencyinput.Name = "addfrequencyinput";
+            this.addfrequencyinput.Size = new System.Drawing.Size(192, 20);
+            this.addfrequencyinput.TabIndex = 13;
+            this.addfrequencyinput.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // addamountinput
+            // 
+            this.addamountinput.DecimalPlaces = 2;
+            this.addamountinput.Location = new System.Drawing.Point(202, 93);
+            this.addamountinput.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.addamountinput.Name = "addamountinput";
+            this.addamountinput.Size = new System.Drawing.Size(192, 20);
+            this.addamountinput.TabIndex = 2;
             // 
             // addautono
             // 
@@ -552,7 +671,7 @@ namespace Budget_App_Main
             // 
             // addexpensebutton
             // 
-            this.addexpensebutton.Location = new System.Drawing.Point(400, 541);
+            this.addexpensebutton.Location = new System.Drawing.Point(213, 553);
             this.addexpensebutton.Name = "addexpensebutton";
             this.addexpensebutton.Size = new System.Drawing.Size(112, 23);
             this.addexpensebutton.TabIndex = 11;
@@ -567,27 +686,6 @@ namespace Budget_App_Main
             this.adddateinput.Size = new System.Drawing.Size(192, 20);
             this.adddateinput.TabIndex = 9;
             // 
-            // addfrequencyinput
-            // 
-            this.addfrequencyinput.Location = new System.Drawing.Point(202, 175);
-            this.addfrequencyinput.Name = "addfrequencyinput";
-            this.addfrequencyinput.Size = new System.Drawing.Size(192, 20);
-            this.addfrequencyinput.TabIndex = 3;
-            // 
-            // addamountinput
-            // 
-            this.addamountinput.Location = new System.Drawing.Point(202, 100);
-            this.addamountinput.Name = "addamountinput";
-            this.addamountinput.Size = new System.Drawing.Size(192, 20);
-            this.addamountinput.TabIndex = 2;
-            // 
-            // addlinkinput
-            // 
-            this.addlinkinput.Location = new System.Drawing.Point(202, 543);
-            this.addlinkinput.Name = "addlinkinput";
-            this.addlinkinput.Size = new System.Drawing.Size(192, 20);
-            this.addlinkinput.TabIndex = 10;
-            // 
             // addaccountinput
             // 
             this.addaccountinput.Location = new System.Drawing.Point(202, 325);
@@ -597,19 +695,11 @@ namespace Budget_App_Main
             // 
             // addnameinput
             // 
+            this.addnameinput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.addnameinput.Location = new System.Drawing.Point(202, 20);
             this.addnameinput.Name = "addnameinput";
             this.addnameinput.Size = new System.Drawing.Size(192, 20);
             this.addnameinput.TabIndex = 1;
-            // 
-            // addlink
-            // 
-            this.addlink.AutoSize = true;
-            this.addlink.Location = new System.Drawing.Point(30, 550);
-            this.addlink.Name = "addlink";
-            this.addlink.Size = new System.Drawing.Size(71, 13);
-            this.addlink.TabIndex = 8;
-            this.addlink.Text = "Expense Link";
             // 
             // adddate
             // 
@@ -688,10 +778,14 @@ namespace Budget_App_Main
             // 
             this.expensedatagridview.AllowUserToAddRows = false;
             this.expensedatagridview.AllowUserToDeleteRows = false;
+            this.expensedatagridview.AllowUserToResizeColumns = false;
+            this.expensedatagridview.AllowUserToResizeRows = false;
             this.expensedatagridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.expensedatagridview.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            this.expensedatagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.expensedatagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ExpenseDataGridDeleteButton});
+            this.expensedatagridview.GridColor = System.Drawing.Color.LightGreen;
             this.expensedatagridview.Location = new System.Drawing.Point(561, 38);
             this.expensedatagridview.MultiSelect = false;
             this.expensedatagridview.Name = "expensedatagridview";
@@ -724,9 +818,17 @@ namespace Budget_App_Main
             this.TabBudget.PerformLayout();
             this.TabPaycheck.ResumeLayout(false);
             this.TabPaycheck.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.extrawithinput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalmedwithinput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalstatewithinput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalfedwithinput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paycheckamountatinput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paycheckamoutbtinput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paycheckdatagridview)).EndInit();
             this.TabExpense.ResumeLayout(false);
             this.TabExpense.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.addfrequencyinput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addamountinput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.expensedatagridview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -745,12 +847,8 @@ namespace Budget_App_Main
         private System.Windows.Forms.Label addamount;
         private System.Windows.Forms.Label addname;
         private System.Windows.Forms.Label adddate;
-        private System.Windows.Forms.Label addlink;
         private System.Windows.Forms.TextBox addaccountinput;
         private System.Windows.Forms.TextBox addnameinput;
-        private System.Windows.Forms.TextBox addlinkinput;
-        private System.Windows.Forms.TextBox addfrequencyinput;
-        private System.Windows.Forms.TextBox addamountinput;
         private System.Windows.Forms.DateTimePicker adddateinput;
         private System.Windows.Forms.Button addexpensebutton;
         private System.Windows.Forms.DataGridView expensedatagridview;
@@ -786,16 +884,18 @@ namespace Budget_App_Main
         private Label totalotherwitholding;
         private Label totalstatewitholding;
         private Label totalfederalwitholding;
-        private TextBox extrawithinput;
-        private TextBox totalmedwithinput;
-        private TextBox totalstatewithinput;
-        private TextBox totalfedwithinput;
-        private TextBox paycheckamountatinput;
-        private TextBox paycheckamoutbtinput;
         private TextBox paychecksourceinput;
         private Button addpaycheckbutton;
         private DataGridViewButtonColumn PaycheckDataGridDeleteButton;
         public ComboBox paycheckfrequencyinput;
+        private NumericUpDown paycheckamountatinput;
+        private NumericUpDown paycheckamoutbtinput;
+        private NumericUpDown totalfedwithinput;
+        private NumericUpDown totalstatewithinput;
+        private NumericUpDown totalmedwithinput;
+        private NumericUpDown extrawithinput;
+        private NumericUpDown addamountinput;
+        private NumericUpDown addfrequencyinput;
     }
 }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 //https://www.youtube.com/watch?v=ayp3tHEkRc0
@@ -36,6 +37,16 @@ namespace Budget_App_Main
             var expensebindingList = new BindingList<ExpenseModel>(expense);
             var source = new BindingSource(expensebindingList, null);
             expensedatagridview.DataSource = source;
+
+            addnameinput.Text = "";
+            addamountinput.Text = "0.00";
+            addfrequencyinput.Text = "";
+            addsplityes.Checked = true;
+            addsplitno.Checked = false;
+            addaccountinput.Text = "";
+            addautoyes.Checked = true;
+            addautono.Checked = false;
+            adddateinput.Text = "";
         }
         private void WireUpPaycheckList()
         {
@@ -43,6 +54,15 @@ namespace Budget_App_Main
             var paycheckbindingList = new BindingList<PaycheckModel>(paycheck);
             var source = new BindingSource(paycheckbindingList, null);
             paycheckdatagridview.DataSource = source;
+
+            paychecksourceinput.Text = "";
+            paycheckamoutbtinput.Text = "0.00";
+            paycheckamountatinput.Text = "0.00";
+            paycheckfrequencyinput.Text = "";
+            totalfedwithinput.Text = "0.00";
+            totalstatewithinput.Text = "0.00";
+            totalmedwithinput.Text = "0.00";
+            extrawithinput.Text = "0.00";
         }
         private void AddExpenseButton_Click(object sender, EventArgs e)
         {
@@ -51,7 +71,7 @@ namespace Budget_App_Main
             ExpenseModel p = new ExpenseModel();
 
             p.Name = addnameinput.Text;
-            p.Amount = Decimal.Parse(addamountinput.Text);
+            p.Amount = addamountinput.Value;
             p.FrequencyInWeeks = Int16.Parse(addfrequencyinput.Text);
             if (addsplityes.Checked)
             {
@@ -61,7 +81,7 @@ namespace Budget_App_Main
             {
                 p.IsSplit = false;
             }
-            p.Account = addaccount.Text;
+            p.Account = addaccountinput.Text;
             if (addautoyes.Checked)
             {
                 p.IsAutoDebit = true;
@@ -71,27 +91,60 @@ namespace Budget_App_Main
                 p.IsAutoDebit = false;
             }
             p.Date = adddateinput.Text.ToString();
-            p.Link = addlinkinput.Text;
 
-            string insertString = "INSERT INTO Expense(Name,Amount,FrequencyInWeeks,IsSplit,Account,IsAutoDebit,Date,Link) VALUES (" +
-                "'" + p.Name + "'," +
-                p.Amount + "," +
-                p.FrequencyInWeeks + "," +
-                "'" + p.IsSplit + "'," +
-                "'" + p.Account + "'," +
-                "'" + p.IsAutoDebit + "'," +
-                "'" + p.Date + "'," +
-                "'" + p.Link + "')";
+            SqlParameter nameParameter = new SqlParameter();
+            nameParameter.ParameterName = "@name";
+            nameParameter.Value = p.Name;
+            SqlParameter amountParameter = new SqlParameter();
+            amountParameter.ParameterName = "@amount";
+            amountParameter.Value = p.Amount;
+            SqlParameter freqParameter = new SqlParameter();
+            freqParameter.ParameterName = "@freq";
+            freqParameter.Value = p.FrequencyInWeeks;
+            SqlParameter splitParameter = new SqlParameter();
+            splitParameter.ParameterName = "@split";
+            splitParameter.Value = p.IsSplit;
+            SqlParameter accountParameter = new SqlParameter();
+            accountParameter.ParameterName = "@account";
+            accountParameter.Value = p.Account;
+            SqlParameter dateParameter = new SqlParameter();
+            dateParameter.ParameterName = "@date";
+            dateParameter.Value = p.Date;
+            SqlParameter monthlybillamountParameter = new SqlParameter();
+            monthlybillamountParameter.ParameterName = "@monthlybillamount";
+            
+            if (p.FrequencyInWeeks == 1)
+            {
+                monthlybillamountParameter.Value = Convert.ToDouble(p.MonthlyBillAmount) * 4;
+            }
+            else if (p.FrequencyInWeeks == 2)
+            {
+                monthlybillamountParameter.Value = Convert.ToDouble(p.MonthlyBillAmount) * 2;
+            }
+            else if (p.FrequencyInWeeks == 3)
+            {
+                monthlybillamountParameter.Value = Convert.ToDouble(p.MonthlyBillAmount) * 1.5;
+            }
+            else if (p.FrequencyInWeeks == 4)
+            {
+                monthlybillamountParameter.Value = Convert.ToDouble(p.MonthlyBillAmount);
+            }
+            else
+            {
+                monthlybillamountParameter.Value = Convert.ToDouble(p.MonthlyBillAmount) / p.FrequencyInWeeks;
+            };
+            
+
+            string insertString = "INSERT INTO Expense(Name,Amount,FrequencyInWeeks,IsSplit,Account,IsAutoDebit,Date,MonthlyBillAmount) " +
+                "VALUES (@name,@amount,@freq,@split,@account,@date,@monthlybillamount);";
             SQLiteDataAccess.SaveExpense(insertString);
 
             expense.Add(p);
-            WireUpExpenseList();
+            LoadExpenseList();
             calculateValuesBudgetPage();
 
-            MessageBox.Show("Expense Added");
-
             addnameinput.Text = "";
-            addamountinput.Text = "";
+            addamountinput.Text = "0.00";
             addfrequencyinput.Text = "";
             addsplityes.Checked = true;
             addsplitno.Checked = false;
@@ -99,46 +152,76 @@ namespace Budget_App_Main
             addautoyes.Checked = true;
             addautono.Checked = false;
             adddateinput.Text = "";
-            addlinkinput.Text = "";
         }
         private void addpaycheckbutton_Click(object sender, EventArgs e)
         {
             PaycheckModel p = new PaycheckModel();
 
             p.Source = paychecksourceinput.Text;
-            p.Amount_Before_Tax = Decimal.Parse(paycheckamoutbtinput.Text);
-            p.Amount_After_Tax = Decimal.Parse(paycheckamountatinput.Text);
+            p.Amount_Before_Tax = paycheckamoutbtinput.Value;
+            p.Amount_After_Tax = paycheckamountatinput.Value;
             p.Frequency = paycheckfrequencyinput.Text;
-            p.Federal_Witholding = Decimal.Parse(totalfedwithinput.Text);
-            p.State_Witholding = Decimal.Parse(totalstatewithinput.Text);
-            p.Med_SS_401K_Witholding = Decimal.Parse(totalmedwithinput.Text);
-            p.Extra_Witholding = Decimal.Parse(extrawithinput.Text);
+            p.Federal_Witholding = totalfedwithinput.Value;
+            p.State_Witholding = totalstatewithinput.Value;
+            p.Med_SS_401K_Witholding = totalmedwithinput.Value;
+            p.Extra_Witholding = extrawithinput.Value;
 
-            string insertString = "INSERT INTO Paycheck(Source,Amount_Before_Tax,Amount_After_Tax,Frequency,Federal_Witholding,State_Witholding,Med_SS_401K_Witholding,Extra_Witholding) VALUES (" +
-            "'" + p.Source + "'," +
-            p.Amount_Before_Tax + "," +
-            p.Amount_After_Tax + "," +
-            "'" + p.Frequency + "'," +
-            p.Federal_Witholding + "," +
-            p.State_Witholding + "," +
-            p.Med_SS_401K_Witholding + "," +
-            p.Extra_Witholding + ")";
+            SqlParameter sourceParameter = new SqlParameter();
+            sourceParameter.ParameterName = "@source";
+            sourceParameter.Value = p.Source;
+            SqlParameter btParameter = new SqlParameter();
+            btParameter.ParameterName = "@bt";
+            btParameter.Value = p.Amount_Before_Tax;
+            SqlParameter atParameter = new SqlParameter();
+            atParameter.ParameterName = "@at";
+            atParameter.Value = p.Amount_After_Tax;
+            SqlParameter freqParameter = new SqlParameter();
+            freqParameter.ParameterName = "@freq";
+            freqParameter.Value = p.Frequency;
+            SqlParameter fedParameter = new SqlParameter();
+            fedParameter.ParameterName = "@fed";
+            fedParameter.Value = p.Federal_Witholding;
+            SqlParameter stParameter = new SqlParameter();
+            stParameter.ParameterName = "@st";
+            stParameter.Value = p.State_Witholding;
+            SqlParameter medParameter = new SqlParameter();
+            medParameter.ParameterName = "@med";
+            medParameter.Value = p.Med_SS_401K_Witholding;
+            SqlParameter extraParameter = new SqlParameter();
+            extraParameter.ParameterName = "@extra";
+            extraParameter.Value = p.Extra_Witholding;
+            SqlParameter totalParameter = new SqlParameter();
+            totalParameter.ParameterName = "@total";
+            if(p.Frequency == "Weekly")
+            {
+                totalParameter.Value += Convert.ToString(p.Amount_After_Tax * 4);
+            }
+            else if(p.Frequency == "Every 2 Weeks")
+            {
+                totalParameter.Value += Convert.ToString(p.Amount_After_Tax * 2);
+            }
+            else if (p.Frequency == "Monthly")
+            {
+                totalParameter.Value += Convert.ToString(p.Amount_After_Tax);
+            };
+
+            string insertString = "INSERT INTO Paycheck(Source, AmountBeforeTax, AmountAfterTax, Frequency, FederalWitholding, StateWitholding, MedicareSS401KWitholding, ExtraWitholding, TotalMonthly) " +
+                "VALUES (@source, @bt, @at, @freq, @fed, @st, @med, @extra, @total);";
+
             SQLiteDataAccess.SavePaycheck(insertString);
 
             paycheck.Add(p);
-            WireUpPaycheckList();
+            LoadPaycheckList();
             calculateValuesBudgetPage();
 
-            MessageBox.Show("Paycheck Added");
-
             paychecksourceinput.Text = "";
-            paycheckamoutbtinput.Text = "";
-            paycheckamountatinput.Text = "";
+            paycheckamoutbtinput.Text = "0.00";
+            paycheckamountatinput.Text = "0.00";
             paycheckfrequencyinput.Text = "";
-            totalfedwithinput.Text = "";
-            totalstatewithinput.Text = "";
-            totalmedwithinput.Text = "";
-            extrawithinput.Text = "";
+            totalfedwithinput.Text = "0.00";
+            totalstatewithinput.Text = "0.00";
+            totalmedwithinput.Text = "0.00";
+            extrawithinput.Text = "0.00";
         }
         private void addsplityes_CheckedChanged(object sender, EventArgs e)
         {
@@ -182,13 +265,15 @@ namespace Budget_App_Main
             if (e.ColumnIndex == expensedatagridview.Columns["ExpenseDataGridDeleteButton"].Index)
             {
                 var RowID = expensedatagridview.Rows[e.RowIndex].Cells[1].Value.ToString();
-                string deleteString = "DELETE FROM Expense WHERE ID = " + RowID;
+                SqlParameter idParameter = new SqlParameter();
+                idParameter.ParameterName = "@id";
+                idParameter.Value = RowID;
+
+                string deleteString = "DELETE FROM Expense WHERE ID = @id;";
 
                 SQLiteDataAccess.DeleteExpense(deleteString);
                 LoadExpenseList();
                 calculateValuesBudgetPage();
-
-                MessageBox.Show("Expense Deleted");
             }
         }
         private void paycheckdatagridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -197,90 +282,74 @@ namespace Budget_App_Main
             if (e.ColumnIndex == paycheckdatagridview.Columns["PaycheckDataGridDeleteButton"].Index)
             {
                 var RowID = paycheckdatagridview.Rows[e.RowIndex].Cells[1].Value.ToString();
-                string deleteString = "DELETE FROM Paycheck WHERE ID = " + RowID;
+                SqlParameter idParameter = new SqlParameter();
+                idParameter.ParameterName = "@id";
+                idParameter.Value = RowID;
+
+                string deleteString = "DELETE FROM Paycheck WHERE ID = @id;";
 
                 SQLiteDataAccess.DeletePaycheck(deleteString);
                 LoadPaycheckList();
                 calculateValuesBudgetPage();
-
-                MessageBox.Show("Paycheck Deleted");
             }
         }
         private void calculateValuesBudgetPage()
         {
             //This function acts as a 'Load' for the main page and is called after any changes are made to paychecks or expenses and also on app load.
             //All values are calculated as 'monthly' originally.
-            decimal total_expense_amount = 0;
-            decimal total_expense_split = 0;
-            decimal total_paycheck_before = 0;
-            decimal total_paycheck_after = 0;
-            decimal paycheck_freq = 1;
 
-            //Calculate all expense amounts and if they are split and their frequency into one sum 
-            for(int i = 0; i < expensedatagridview.Rows.Count; i++)
+            //GAI = PaycheckBT * 26
+            decimal grossannualincomecalc = 0;
+            for (int i = 0; i < paycheckdatagridview.Rows.Count; ++i)
             {
-                var isSplit = expensedatagridview.Rows[i].Cells[5].Value;
-                if (isSplit.ToString() == "True")
-                {
-                    total_expense_split = 2;
-                }
-                else
-                {
-                    total_expense_split = 1;
-                }
-                //(Each Expense / Frequency in Weeks)/1 or 2 If the cost is Split
-                total_expense_amount += ((Convert.ToDecimal(expensedatagridview.Rows[i].Cells[3].Value) / 
-                    Convert.ToInt32(expensedatagridview.Rows[i].Cells[4].Value)) / total_expense_split);
+                grossannualincomecalc += Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[3].Value);
             }
-            //Sum all paycheck amounts before tax compared to frequency values
-            for(int i = 0; i < paycheckdatagridview.Rows.Count; i++)
+            grossannualincometext.Text = Convert.ToString(grossannualincomecalc * 26);
+
+            //GPI = PaycheckBT
+            decimal grosspaycheckincomecalc = 0;
+            for (int i = 0; i < paycheckdatagridview.Rows.Count; ++i)
             {
-                if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Weekly")
-                {
-                    paycheck_freq = 4;
-                }
-                else if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Every 2 Weeks")
-                {
-                    paycheck_freq = 2;
-                }
-                else if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Monthly")
-                {
-                    paycheck_freq = 1;
-                }
-
-                total_paycheck_before += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[3].Value) *
-                    paycheck_freq);
+                grosspaycheckincomecalc += Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[3].Value);
             }
+            grosspaycheckincometext.Text = Convert.ToString(grosspaycheckincomecalc);
 
-            //Sum all paycheck amounts before tax compared to frequency values
-            for (int i = 0; i < paycheckdatagridview.Rows.Count; i++)
+            //NAI = PaycheckAT * 26
+            decimal netannualincomecalc = 0;
+            for (int i = 0; i < paycheckdatagridview.Rows.Count; ++i)
             {
-                if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Weekly")
-                {
-                    paycheck_freq = 4;
-                }
-                else if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Every 2 Weeks")
-                {
-                    paycheck_freq = 2;
-                }
-                else if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Monthly")
-                {
-                    paycheck_freq = 1;
-                }
-
-                total_paycheck_after += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[4].Value) *
-                    paycheck_freq);
+                netannualincomecalc += Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[4].Value);
             }
+            netannualincometext.Text = Convert.ToString(netannualincomecalc * 26);
 
-            //Display values
-            grossannualincometext.Text = Convert.ToString(total_paycheck_before * 12);
-            grosspaycheckincometext.Text = Convert.ToString(total_paycheck_before / paycheck_freq);
-            netannualincometext.Text = Convert.ToString(total_paycheck_after * 12);
-            netpaycheckincometext.Text = Convert.ToString(total_paycheck_after / paycheck_freq);
-            fluidannualincometext.Text = Convert.ToString((total_paycheck_after * 12) - (total_expense_amount * 12));
-            fluidpaycheckincometext.Text = Convert.ToString((total_paycheck_after / paycheck_freq)- (total_expense_amount / paycheck_freq));
-            totalannualexpensestext.Text = Convert.ToString(total_expense_amount * 12);
-            totalpaycheckexpensestext.Text = Convert.ToString(total_expense_amount / paycheck_freq);
+            //NPI = PaycheckAT
+            decimal netpaycheckincomecalc = 0;
+            for (int i = 0; i < paycheckdatagridview.Rows.Count; ++i)
+            {
+                netpaycheckincomecalc += Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[4].Value);
+            }
+            netpaycheckincometext.Text = Convert.ToString(netpaycheckincomecalc);
+
+            //TAE = Total Monthly Expenses * 26
+            decimal totalannualexpenses = 0;
+            for (int i = 0; i < expensedatagridview.Rows.Count; ++i)
+            {
+                totalannualexpenses += Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[9].Value);
+            }
+            totalannualexpensestext.Text = Convert.ToString(totalannualexpenses * 12);
+
+            //TPE = Total Monthly Expenses / 2
+            decimal totalmonthlyexpenses = 0;
+            for (int i = 0; i < expensedatagridview.Rows.Count; ++i)
+            {
+                totalmonthlyexpenses += Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[9].Value);
+            }
+            totalpaycheckexpensestext.Text = Convert.ToString(totalmonthlyexpenses);
+
+            //FAI = (Total Annual Net - Total Annual Expenses)
+            fluidannualincometext.Text = Convert.ToString(Convert.ToDecimal(netannualincometext.Text) - Convert.ToDecimal(totalannualexpensestext.Text));
+
+            //FMI = Total Paycheck Net - (Total Monthly Expenses)
         }
     }
 }

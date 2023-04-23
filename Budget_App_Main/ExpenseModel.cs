@@ -10,6 +10,7 @@
         public string Account { get; set; }
         public bool IsAutoDebit { get; set; }
         public string Date { get; set; }
-        public string Link { get; set; }
+        public string MonthlyBillAmount { get; set; }
+        public string TotalAfterBills { get; set; }
     }
 }
