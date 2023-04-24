@@ -78,7 +78,6 @@ namespace Budget_App_Main
             this.addsplitno = new System.Windows.Forms.CheckBox();
             this.addsplityes = new System.Windows.Forms.CheckBox();
             this.addexpensebutton = new System.Windows.Forms.Button();
-            this.adddateinput = new System.Windows.Forms.DateTimePicker();
             this.addaccountinput = new System.Windows.Forms.TextBox();
             this.addnameinput = new System.Windows.Forms.TextBox();
             this.adddate = new System.Windows.Forms.Label();
@@ -91,6 +90,7 @@ namespace Budget_App_Main
             this.expenselistlabel = new System.Windows.Forms.Label();
             this.expensedatagridview = new System.Windows.Forms.DataGridView();
             this.ExpenseDataGridDeleteButton = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.adddateinput = new System.Windows.Forms.NumericUpDown();
             this.tabControl1.SuspendLayout();
             this.TabBudget.SuspendLayout();
             this.TabPaycheck.SuspendLayout();
@@ -105,6 +105,7 @@ namespace Budget_App_Main
             ((System.ComponentModel.ISupportInitialize)(this.addfrequencyinput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addamountinput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expensedatagridview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.adddateinput)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -448,6 +449,7 @@ namespace Budget_App_Main
             // 
             // paychecksourceinput
             // 
+            this.paychecksourceinput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.paychecksourceinput.Location = new System.Drawing.Point(33, 41);
             this.paychecksourceinput.Name = "paychecksourceinput";
             this.paychecksourceinput.Size = new System.Drawing.Size(146, 20);
@@ -566,6 +568,7 @@ namespace Budget_App_Main
             // 
             // TabExpense
             // 
+            this.TabExpense.Controls.Add(this.adddateinput);
             this.TabExpense.Controls.Add(this.addfrequencyinput);
             this.TabExpense.Controls.Add(this.addamountinput);
             this.TabExpense.Controls.Add(this.addautono);
@@ -573,7 +576,6 @@ namespace Budget_App_Main
             this.TabExpense.Controls.Add(this.addsplitno);
             this.TabExpense.Controls.Add(this.addsplityes);
             this.TabExpense.Controls.Add(this.addexpensebutton);
-            this.TabExpense.Controls.Add(this.adddateinput);
             this.TabExpense.Controls.Add(this.addaccountinput);
             this.TabExpense.Controls.Add(this.addnameinput);
             this.TabExpense.Controls.Add(this.adddate);
@@ -679,13 +681,6 @@ namespace Budget_App_Main
             this.addexpensebutton.UseVisualStyleBackColor = true;
             this.addexpensebutton.Click += new System.EventHandler(this.AddExpenseButton_Click);
             // 
-            // adddateinput
-            // 
-            this.adddateinput.Location = new System.Drawing.Point(202, 475);
-            this.adddateinput.Name = "adddateinput";
-            this.adddateinput.Size = new System.Drawing.Size(192, 20);
-            this.adddateinput.TabIndex = 9;
-            // 
             // addaccountinput
             // 
             this.addaccountinput.Location = new System.Drawing.Point(202, 325);
@@ -706,9 +701,9 @@ namespace Budget_App_Main
             this.adddate.AutoSize = true;
             this.adddate.Location = new System.Drawing.Point(30, 475);
             this.adddate.Name = "adddate";
-            this.adddate.Size = new System.Drawing.Size(74, 13);
+            this.adddate.Size = new System.Drawing.Size(133, 13);
             this.adddate.TabIndex = 7;
-            this.adddate.Text = "Expense Date";
+            this.adddate.Text = "Expense Day of the Month";
             // 
             // addautodebit
             // 
@@ -803,6 +798,28 @@ namespace Budget_App_Main
             this.ExpenseDataGridDeleteButton.Text = "Delete";
             this.ExpenseDataGridDeleteButton.UseColumnTextForButtonValue = true;
             // 
+            // adddateinput
+            // 
+            this.adddateinput.Location = new System.Drawing.Point(202, 475);
+            this.adddateinput.Maximum = new decimal(new int[] {
+            31,
+            0,
+            0,
+            0});
+            this.adddateinput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.adddateinput.Name = "adddateinput";
+            this.adddateinput.Size = new System.Drawing.Size(192, 20);
+            this.adddateinput.TabIndex = 14;
+            this.adddateinput.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // BudgetMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -830,6 +847,7 @@ namespace Budget_App_Main
             ((System.ComponentModel.ISupportInitialize)(this.addfrequencyinput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addamountinput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.expensedatagridview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.adddateinput)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -849,7 +867,6 @@ namespace Budget_App_Main
         private System.Windows.Forms.Label adddate;
         private System.Windows.Forms.TextBox addaccountinput;
         private System.Windows.Forms.TextBox addnameinput;
-        private System.Windows.Forms.DateTimePicker adddateinput;
         private System.Windows.Forms.Button addexpensebutton;
         private System.Windows.Forms.DataGridView expensedatagridview;
         private System.Windows.Forms.CheckBox addsplitno;
@@ -896,6 +913,7 @@ namespace Budget_App_Main
         private NumericUpDown extrawithinput;
         private NumericUpDown addamountinput;
         private NumericUpDown addfrequencyinput;
+        private NumericUpDown adddateinput;
     }
 }
 

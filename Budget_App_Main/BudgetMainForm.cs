@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Windows.Forms;
 
 //https://www.youtube.com/watch?v=ayp3tHEkRc0
@@ -92,52 +93,47 @@ namespace Budget_App_Main
             }
             p.Date = adddateinput.Text.ToString();
 
-            SqlParameter nameParameter = new SqlParameter();
-            nameParameter.ParameterName = "@name";
-            nameParameter.Value = p.Name;
-            SqlParameter amountParameter = new SqlParameter();
-            amountParameter.ParameterName = "@amount";
-            amountParameter.Value = p.Amount;
-            SqlParameter freqParameter = new SqlParameter();
-            freqParameter.ParameterName = "@freq";
-            freqParameter.Value = p.FrequencyInWeeks;
-            SqlParameter splitParameter = new SqlParameter();
-            splitParameter.ParameterName = "@split";
-            splitParameter.Value = p.IsSplit;
-            SqlParameter accountParameter = new SqlParameter();
-            accountParameter.ParameterName = "@account";
-            accountParameter.Value = p.Account;
-            SqlParameter dateParameter = new SqlParameter();
-            dateParameter.ParameterName = "@date";
-            dateParameter.Value = p.Date;
-            SqlParameter monthlybillamountParameter = new SqlParameter();
-            monthlybillamountParameter.ParameterName = "@monthlybillamount";
-            
-            if (p.FrequencyInWeeks == 1)
+            bool issplitParameter = false;
+            if (addsplityes.Checked)
             {
-                monthlybillamountParameter.Value = Convert.ToDouble(p.MonthlyBillAmount) * 4;
-            }
-            else if (p.FrequencyInWeeks == 2)
-            {
-                monthlybillamountParameter.Value = Convert.ToDouble(p.MonthlyBillAmount) * 2;
-            }
-            else if (p.FrequencyInWeeks == 3)
-            {
-                monthlybillamountParameter.Value = Convert.ToDouble(p.MonthlyBillAmount) * 1.5;
-            }
-            else if (p.FrequencyInWeeks == 4)
-            {
-                monthlybillamountParameter.Value = Convert.ToDouble(p.MonthlyBillAmount);
+                issplitParameter = true;
             }
             else
             {
-                monthlybillamountParameter.Value = Convert.ToDouble(p.MonthlyBillAmount) / p.FrequencyInWeeks;
+                issplitParameter = false;
+            }
+            bool isautoParameter = false;
+            if (addautoyes.Checked)
+            {
+                isautoParameter = true;
+            }
+            else
+            {
+                isautoParameter = false;
+            }
+            string monthlybillamountParameter = "";
+            if (p.FrequencyInWeeks == 1)
+            {
+                monthlybillamountParameter = Convert.ToString(Convert.ToDecimal(addamountinput) * 4);
+            }
+            else if (p.FrequencyInWeeks == 2)
+            {
+                monthlybillamountParameter = Convert.ToString(Convert.ToDecimal(addamountinput) * 2);
+            }
+            else if (p.FrequencyInWeeks == 3)
+            {
+                monthlybillamountParameter = Convert.ToString(Convert.ToDouble(addamountinput) * 1.5);
+            }
+            else if (p.FrequencyInWeeks == 4)
+            {
+                monthlybillamountParameter = Convert.ToString(addamountinput);
+            }
+            else
+            {
+                monthlybillamountParameter = Convert.ToString(Convert.ToDouble(addamountinput) / Convert.ToInt32(addfrequencyinput));
             };
             
-
-            string insertString = "INSERT INTO Expense(Name,Amount,FrequencyInWeeks,IsSplit,Account,IsAutoDebit,Date,MonthlyBillAmount) " +
-                "VALUES (@name,@amount,@freq,@split,@account,@date,@monthlybillamount);";
-            SQLiteDataAccess.SaveExpense(insertString);
+            SQLiteDataAccess.SaveExpense(addnameinput.Text,addamountinput.Value,Convert.ToInt32(addfrequencyinput.Value), issplitParameter,addaccountinput.Text, isautoParameter, adddateinput.Text, Convert.ToDecimal(monthlybillamountParameter));
 
             expense.Add(p);
             LoadExpenseList();
@@ -166,53 +162,21 @@ namespace Budget_App_Main
             p.Med_SS_401K_Witholding = totalmedwithinput.Value;
             p.Extra_Witholding = extrawithinput.Value;
 
-            SqlParameter sourceParameter = new SqlParameter();
-            sourceParameter.ParameterName = "@source";
-            sourceParameter.Value = paychecksourceinput.Text;
-            SqlParameter btParameter = new SqlParameter();
-            btParameter.ParameterName = "@bt";
-            btParameter.Value = paycheckamoutbtinput.Value;
-            SqlParameter atParameter = new SqlParameter();
-            atParameter.ParameterName = "@at";
-            atParameter.Value = paycheckamountatinput.Value;
-            SqlParameter freqParameter = new SqlParameter();
-            freqParameter.ParameterName = "@freq";
-            freqParameter.Value = paycheckfrequencyinput.Text;
-            SqlParameter fedParameter = new SqlParameter();
-            fedParameter.ParameterName = "@fed";
-            fedParameter.Value = totalfedwithinput.Value;
-            SqlParameter stParameter = new SqlParameter();
-            stParameter.ParameterName = "@st";
-            stParameter.Value = totalstatewithinput.Value;
-            SqlParameter medParameter = new SqlParameter();
-            medParameter.ParameterName = "@med";
-            medParameter.Value = totalmedwithinput.Value;
-            SqlParameter extraParameter = new SqlParameter();
-            extraParameter.ParameterName = "@extra";
-            extraParameter.Value = extrawithinput.Value;
-            SqlParameter totalParameter = new SqlParameter();
-            totalParameter.ParameterName = "@total";
+            decimal TotalMonthly = 0;
             if(p.Frequency == "Weekly")
             {
-                totalParameter.Value += Convert.ToString(paycheckamountatinput.Value * 4);
+                TotalMonthly += paycheckamountatinput.Value * 4;
             }
             else if(p.Frequency == "Every 2 Weeks")
             {
-                totalParameter.Value += Convert.ToString(paycheckamountatinput.Value * 2);
+                TotalMonthly += paycheckamountatinput.Value * 2;
             }
             else if (p.Frequency == "Monthly")
             {
-                totalParameter.Value += Convert.ToString(paycheckamountatinput.Value);
+                TotalMonthly += paycheckamountatinput.Value;
             };
 
-        //https://learn.microsoft.com/en-us/dotnet/standard/data/sqlite/parameters
-
-            string insertString = @"INSERT INTO Paycheck(Source, AmountBeforeTax, AmountAfterTax, Frequency, FederalWitholding, StateWitholding, MedicareSS401KWitholding, ExtraWitholding, TotalMonthly) " +
-                "VALUES (@source, @bt, @at, @freq, @fed, @st, @med, @extra, @total);";
-
-            string message = insertString;
-            MessageBox.Show(message);
-            SQLiteDataAccess.SavePaycheck(insertString);
+            SQLiteDataAccess.SavePaycheck(paychecksourceinput.Text, paycheckamoutbtinput.Value, paycheckamountatinput.Value, paycheckfrequencyinput.Text, totalfedwithinput.Value, totalstatewithinput.Value, totalmedwithinput.Value, extrawithinput.Value, TotalMonthly);
 
             paycheck.Add(p);
             LoadPaycheckList();
@@ -269,13 +233,8 @@ namespace Budget_App_Main
             if (e.ColumnIndex == expensedatagridview.Columns["ExpenseDataGridDeleteButton"].Index)
             {
                 var RowID = expensedatagridview.Rows[e.RowIndex].Cells[1].Value.ToString();
-                SqlParameter idParameter = new SqlParameter();
-                idParameter.ParameterName = "@id";
-                idParameter.Value = RowID;
 
-                string deleteString = "DELETE FROM Expense WHERE ID = @id;";
-
-                SQLiteDataAccess.DeleteExpense(deleteString);
+                SQLiteDataAccess.DeleteExpense(Convert.ToInt32(RowID));
                 LoadExpenseList();
                 calculateValuesBudgetPage();
             }
@@ -286,13 +245,8 @@ namespace Budget_App_Main
             if (e.ColumnIndex == paycheckdatagridview.Columns["PaycheckDataGridDeleteButton"].Index)
             {
                 var RowID = paycheckdatagridview.Rows[e.RowIndex].Cells[1].Value.ToString();
-                SqlParameter idParameter = new SqlParameter();
-                idParameter.ParameterName = "@id";
-                idParameter.Value = RowID;
 
-                string deleteString = "DELETE FROM Paycheck WHERE ID = @id;";
-
-                SQLiteDataAccess.DeletePaycheck(deleteString);
+                SQLiteDataAccess.DeletePaycheck(Convert.ToInt32(RowID));
                 LoadPaycheckList();
                 calculateValuesBudgetPage();
             }

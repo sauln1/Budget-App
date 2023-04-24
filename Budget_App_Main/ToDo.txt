@@ -1,10 +1,10 @@
 1. Allow all alpha numeric characters and symbols in text fields. - TEST
-2. Get ID's for expenses and paychecks right when they are added to allow for deletes. - TEST
-3. Remove ID field from expenses and paycheck grid
-4. Add Expenses 'per paycheck amount' field reflecting how much user owes per paycheck of that bill.
+
+
+4. Add Expenses 'per paycheck amount' field reflecting how much user owes per paycheck of that bill. - TEST
 5. Figure out why paycheck datagrid won't scroll.
-6. Expense account display source in grid is not input
-7. Replace date with 'day of month'.
+6. Expense account display source in grid is not input - TEST
+7. Replace date with 'day of month' as an int between 1 and 31.
 8. Fix tab ordering.
 9. IsSplit and IsAutopDebit reset on app start?
 10. Calculations are wrong.
