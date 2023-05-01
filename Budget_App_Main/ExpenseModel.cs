@@ -9,7 +9,7 @@
         public bool IsSplit { get; set; }
         public string Account { get; set; }
         public bool IsAutoDebit { get; set; }
-        public string Date { get; set; }
+        public int DayOfMonth { get; set; }
         public string MonthlyBillAmount { get; set; }
         public string TotalAfterBills { get; set; }
     }

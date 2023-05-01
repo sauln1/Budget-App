@@ -25,27 +25,11 @@ namespace Budget_App_Main
                 return output.ToList();
             }
         }
-        public static void SaveExpense(string name, decimal amount, int freq, bool split, string account, bool isauto, string date, decimal monthly)
+        public static void SaveExpense(string name, decimal amount, int freq, string split, string account, string isauto, decimal dayofmonth, decimal monthly)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                if (name == "")
-                {
-                    name = "''";
-                }
-                else if (name.Contains("'"))
-                {
-                    name.Replace("'", "/'");
-                }
-                if (account == "")
-                {
-                    account = "''";
-                }
-                else if (account.Contains("'"))
-                {
-                    account.Replace("'", "/'");
-                }
-                cnn.Execute($"INSERT INTO Expense(Name,Amount,FrequencyInWeeks,IsSplit,Account,IsAutoDebit,DayOfMonth,MonthlyBillAmount) VALUES ('{name}',{amount},{freq},'{split}','{account}','{isauto}',{date},{monthly});");            
+                cnn.Execute($"INSERT INTO Expense(Name,Amount,FrequencyInWeeks,IsSplit,Account,AutoDebit,DayOfMonth,MonthlyBillAmount) VALUES ('{name}',{amount},{freq},'{split}','{account}','{isauto}',{dayofmonth},{monthly});");            
             }
         }
         public static void DeleteExpense(int id)

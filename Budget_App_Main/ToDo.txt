@@ -1,11 +1,7 @@
-1. Allow all alpha numeric characters and symbols in text fields. - TEST
-2. Merge Medicare, etc witholding with extra witholding.
-3. Delete button isn't working again.
-4. Add Expenses 'per paycheck amount' field reflecting how much user owes per paycheck of that bill. - TEST
-5. Figure out why paycheck datagrid won't scroll.
-6. Expense account display source in grid is not input - TEST
-7. Replace date with 'day of month' as an int between 1 and 31.
-8. Fix tab ordering.
-9. IsSplit and IsAutopDebit reset on app start?
-10. Calculations are wrong.
-11. Amounts for paychecks are not getting saved.
+1. AutoDebit value not being brought into checkbox.
+2. Merge Medicare, etc witholding with extra witholding (now other witholding).
+
+4. Add Expenses 'per month amount' field reflecting how much user owes per paycheck of that bill.
+
+6. Calculations are wrong.
+7. All other databases should reflect debug

@@ -174,7 +174,7 @@ namespace Budget_App_Main
             // 
             this.fluidpaycheckincometext.AutoEllipsis = true;
             this.fluidpaycheckincometext.AutoSize = true;
-            this.fluidpaycheckincometext.BackColor = System.Drawing.Color.Bisque;
+            this.fluidpaycheckincometext.BackColor = System.Drawing.Color.LightSteelBlue;
             this.fluidpaycheckincometext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.fluidpaycheckincometext.Location = new System.Drawing.Point(253, 400);
             this.fluidpaycheckincometext.MinimumSize = new System.Drawing.Size(130, 2);
@@ -187,7 +187,7 @@ namespace Budget_App_Main
             // 
             this.fluidannualincometext.AutoEllipsis = true;
             this.fluidannualincometext.AutoSize = true;
-            this.fluidannualincometext.BackColor = System.Drawing.Color.Bisque;
+            this.fluidannualincometext.BackColor = System.Drawing.Color.LightSteelBlue;
             this.fluidannualincometext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.fluidannualincometext.Location = new System.Drawing.Point(253, 325);
             this.fluidannualincometext.MinimumSize = new System.Drawing.Size(130, 2);
@@ -507,23 +507,22 @@ namespace Budget_App_Main
             this.paycheckdatagridview.AllowUserToDeleteRows = false;
             this.paycheckdatagridview.AllowUserToResizeColumns = false;
             this.paycheckdatagridview.AllowUserToResizeRows = false;
-            this.paycheckdatagridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.paycheckdatagridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.paycheckdatagridview.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.None;
             this.paycheckdatagridview.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.paycheckdatagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.paycheckdatagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.PaycheckDataGridDeleteButton});
             this.paycheckdatagridview.GridColor = System.Drawing.Color.Bisque;
             this.paycheckdatagridview.Location = new System.Drawing.Point(30, 325);
-            this.paycheckdatagridview.MultiSelect = false;
             this.paycheckdatagridview.Name = "paycheckdatagridview";
             this.paycheckdatagridview.ReadOnly = true;
-            this.paycheckdatagridview.RowHeadersVisible = false;
+            this.paycheckdatagridview.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.paycheckdatagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.paycheckdatagridview.ShowEditingIcon = false;
             this.paycheckdatagridview.Size = new System.Drawing.Size(475, 250);
             this.paycheckdatagridview.TabIndex = 12;
             paycheckdatagridview.CellClick += paycheckdatagridview_CellContentClick;
-
             // 
             // PaycheckDataGridDeleteButton
             // 
@@ -532,6 +531,7 @@ namespace Budget_App_Main
             this.PaycheckDataGridDeleteButton.ReadOnly = true;
             this.PaycheckDataGridDeleteButton.Text = "Delete";
             this.PaycheckDataGridDeleteButton.UseColumnTextForButtonValue = true;
+            this.PaycheckDataGridDeleteButton.Width = 44;
             // 
             // paycheckfrequency
             // 
@@ -708,6 +708,7 @@ namespace Budget_App_Main
             // 
             // addaccountinput
             // 
+            this.addaccountinput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.addaccountinput.Location = new System.Drawing.Point(202, 325);
             this.addaccountinput.Name = "addaccountinput";
             this.addaccountinput.Size = new System.Drawing.Size(192, 20);
@@ -800,23 +801,22 @@ namespace Budget_App_Main
             this.expensedatagridview.AllowUserToDeleteRows = false;
             this.expensedatagridview.AllowUserToResizeColumns = false;
             this.expensedatagridview.AllowUserToResizeRows = false;
-            this.expensedatagridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.expensedatagridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.expensedatagridview.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.None;
             this.expensedatagridview.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.expensedatagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.expensedatagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ExpenseDataGridDeleteButton});
             this.expensedatagridview.GridColor = System.Drawing.Color.LightGreen;
-            this.expensedatagridview.Location = new System.Drawing.Point(557, 38);
-            this.expensedatagridview.MultiSelect = false;
+            this.expensedatagridview.Location = new System.Drawing.Point(561, 38);
             this.expensedatagridview.Name = "expensedatagridview";
             this.expensedatagridview.ReadOnly = true;
-            this.expensedatagridview.RowHeadersVisible = false;
+            this.expensedatagridview.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.expensedatagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.expensedatagridview.ShowEditingIcon = false;
             this.expensedatagridview.Size = new System.Drawing.Size(1040, 571);
             this.expensedatagridview.TabIndex = 7;
             expensedatagridview.CellClick += expensedatagridview_CellContentClick;
-            
             // 
             // ExpenseDataGridDeleteButton
             // 
@@ -825,6 +825,7 @@ namespace Budget_App_Main
             this.ExpenseDataGridDeleteButton.ReadOnly = true;
             this.ExpenseDataGridDeleteButton.Text = "Delete";
             this.ExpenseDataGridDeleteButton.UseColumnTextForButtonValue = true;
+            this.ExpenseDataGridDeleteButton.Width = 44;
             // 
             // BudgetMainForm
             // 
