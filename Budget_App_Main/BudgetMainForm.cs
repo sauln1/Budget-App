@@ -73,7 +73,7 @@ namespace Budget_App_Main
 
             p.Name = addnameinput.Text;
             p.Amount = addamountinput.Value;
-            p.FrequencyInWeeks = Int16.Parse(addfrequencyinput.Text);
+            p.FrequencyInWeeks = Int32.Parse(addfrequencyinput.Text);
             if (addsplityes.Checked)
             {
                 p.IsSplit = true;

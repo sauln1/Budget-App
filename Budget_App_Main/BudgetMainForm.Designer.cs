@@ -522,7 +522,6 @@ namespace Budget_App_Main
             this.paycheckdatagridview.ShowEditingIcon = false;
             this.paycheckdatagridview.Size = new System.Drawing.Size(475, 250);
             this.paycheckdatagridview.TabIndex = 12;
-            this.paycheckdatagridview.Click += new System.EventHandler(this.AddExpenseButton_Click);
             paycheckdatagridview.CellClick += paycheckdatagridview_CellContentClick;
 
             // 
