@@ -33,9 +33,17 @@ namespace Budget_App_Main
                 {
                     name = "''";
                 }
+                else if (name.Contains("'"))
+                {
+                    name.Replace("'", "/'");
+                }
                 if (account == "")
                 {
                     account = "''";
+                }
+                else if (account.Contains("'"))
+                {
+                    account.Replace("'", "/'");
                 }
                 cnn.Execute($"INSERT INTO Expense(Name,Amount,FrequencyInWeeks,IsSplit,Account,IsAutoDebit,DayOfMonth,MonthlyBillAmount) VALUES ('{name}',{amount},{freq},'{split}','{account}','{isauto}',{date},{monthly});");            
             }
@@ -60,13 +68,7 @@ namespace Budget_App_Main
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                if(source == "")
-                {
-                    source = "''";
-                }
-                //cnn.Execute
                 cnn.Execute($"INSERT INTO Paycheck (Source, AmountBeforeTax, AmountAfterTax, Frequency, FederalWitholding, StateWitholding, MedicareSS401KWitholding, ExtraWitholding, TotalMonthly) VALUES ('{source}',{bt},{at},'{freq}',{fed},{st},{med},{extra},{total})");
-
             }
         }
         public static void DeletePaycheck(int id)

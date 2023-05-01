@@ -111,7 +111,29 @@ namespace Budget_App_Main
             {
                 isautoParameter = false;
             }
+
             string monthlybillamountParameter = "";
+            string nameParameter = "";
+            string accountParameter = "";
+
+            if(addnameinput.Text.Contains(@"'"))
+            {
+                nameParameter = addnameinput.Text.Replace(@"'", @"''");
+            }
+            else
+            {
+                nameParameter = addnameinput.Text;
+            }
+
+            if (addaccountinput.Text.Contains(@"'"))
+            {
+                accountParameter = addaccountinput.Text.Replace(@"'", @"''");
+            }
+            else
+            {
+                accountParameter = addaccountinput.Text;
+            }
+
             if (p.FrequencyInWeeks == 1)
             {
                 monthlybillamountParameter = Convert.ToString(Convert.ToDecimal(addamountinput) * 4);
@@ -133,7 +155,7 @@ namespace Budget_App_Main
                 monthlybillamountParameter = Convert.ToString(Convert.ToDouble(addamountinput) / Convert.ToInt32(addfrequencyinput));
             };
             
-            SQLiteDataAccess.SaveExpense(addnameinput.Text,addamountinput.Value,Convert.ToInt32(addfrequencyinput.Value), issplitParameter,addaccountinput.Text, isautoParameter, adddateinput.Text, Convert.ToDecimal(monthlybillamountParameter));
+            SQLiteDataAccess.SaveExpense(nameParameter,addamountinput.Value,Convert.ToInt32(addfrequencyinput.Value), issplitParameter, accountParameter, isautoParameter, adddateinput.Text, Convert.ToDecimal(monthlybillamountParameter));
 
             expense.Add(p);
             LoadExpenseList();
@@ -163,7 +185,18 @@ namespace Budget_App_Main
             p.Extra_Witholding = extrawithinput.Value;
 
             decimal TotalMonthly = 0;
-            if(p.Frequency == "Weekly")
+            string sourceParameter = "";
+
+            if (paychecksourceinput.Text.Contains(@"'"))
+            {
+                sourceParameter = paychecksourceinput.Text.Replace(@"'", @"''");
+            }
+            else
+            {
+                sourceParameter = paychecksourceinput.Text;
+            }
+
+            if (p.Frequency == "Weekly")
             {
                 TotalMonthly += paycheckamountatinput.Value * 4;
             }
@@ -175,8 +208,8 @@ namespace Budget_App_Main
             {
                 TotalMonthly += paycheckamountatinput.Value;
             };
-
-            SQLiteDataAccess.SavePaycheck(paychecksourceinput.Text, paycheckamoutbtinput.Value, paycheckamountatinput.Value, paycheckfrequencyinput.Text, totalfedwithinput.Value, totalstatewithinput.Value, totalmedwithinput.Value, extrawithinput.Value, TotalMonthly);
+            
+            SQLiteDataAccess.SavePaycheck(sourceParameter, paycheckamoutbtinput.Value, paycheckamountatinput.Value, paycheckfrequencyinput.Text, totalfedwithinput.Value, totalstatewithinput.Value, totalmedwithinput.Value, extrawithinput.Value, TotalMonthly);
 
             paycheck.Add(p);
             LoadPaycheckList();
