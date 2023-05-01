@@ -37,7 +37,7 @@ namespace Budget_App_Main
                 {
                     account = "''";
                 }
-                cnn.Execute($"INSERT INTO Expense(Name,Amount,FrequencyInWeeks,IsSplit,Account,IsAutoDebit,Date,MonthlyBillAmount) VALUES ('{name}',{amount},{freq},'{split}','{account}','{isauto}',{date},{monthly});");            
+                cnn.Execute($"INSERT INTO Expense(Name,Amount,FrequencyInWeeks,IsSplit,Account,IsAutoDebit,DayOfMonth,MonthlyBillAmount) VALUES ('{name}',{amount},{freq},'{split}','{account}','{isauto}',{date},{monthly});");            
             }
         }
         public static void DeleteExpense(int id)

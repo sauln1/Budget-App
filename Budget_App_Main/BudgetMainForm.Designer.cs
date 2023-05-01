@@ -71,6 +71,7 @@ namespace Budget_App_Main
             this.paycheckamountbeforetax = new System.Windows.Forms.Label();
             this.paychecksource = new System.Windows.Forms.Label();
             this.TabExpense = new System.Windows.Forms.TabPage();
+            this.adddateinput = new System.Windows.Forms.NumericUpDown();
             this.addfrequencyinput = new System.Windows.Forms.NumericUpDown();
             this.addamountinput = new System.Windows.Forms.NumericUpDown();
             this.addautono = new System.Windows.Forms.CheckBox();
@@ -90,7 +91,6 @@ namespace Budget_App_Main
             this.expenselistlabel = new System.Windows.Forms.Label();
             this.expensedatagridview = new System.Windows.Forms.DataGridView();
             this.ExpenseDataGridDeleteButton = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.adddateinput = new System.Windows.Forms.NumericUpDown();
             this.tabControl1.SuspendLayout();
             this.TabBudget.SuspendLayout();
             this.TabPaycheck.SuspendLayout();
@@ -102,10 +102,10 @@ namespace Budget_App_Main
             ((System.ComponentModel.ISupportInitialize)(this.paycheckamoutbtinput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paycheckdatagridview)).BeginInit();
             this.TabExpense.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.adddateinput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addfrequencyinput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addamountinput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expensedatagridview)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.adddateinput)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -517,10 +517,14 @@ namespace Budget_App_Main
             this.paycheckdatagridview.MultiSelect = false;
             this.paycheckdatagridview.Name = "paycheckdatagridview";
             this.paycheckdatagridview.ReadOnly = true;
-            this.paycheckdatagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.paycheckdatagridview.RowHeadersVisible = false;
+            this.paycheckdatagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.paycheckdatagridview.ShowEditingIcon = false;
             this.paycheckdatagridview.Size = new System.Drawing.Size(475, 250);
             this.paycheckdatagridview.TabIndex = 12;
+            this.paycheckdatagridview.Click += new System.EventHandler(this.AddExpenseButton_Click);
+            paycheckdatagridview.CellClick += paycheckdatagridview_CellContentClick;
+
             // 
             // PaycheckDataGridDeleteButton
             // 
@@ -591,6 +595,28 @@ namespace Budget_App_Main
             this.TabExpense.TabIndex = 1;
             this.TabExpense.Text = "Add Expense";
             this.TabExpense.UseVisualStyleBackColor = true;
+            // 
+            // adddateinput
+            // 
+            this.adddateinput.Location = new System.Drawing.Point(202, 475);
+            this.adddateinput.Maximum = new decimal(new int[] {
+            31,
+            0,
+            0,
+            0});
+            this.adddateinput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.adddateinput.Name = "adddateinput";
+            this.adddateinput.Size = new System.Drawing.Size(192, 20);
+            this.adddateinput.TabIndex = 14;
+            this.adddateinput.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // addfrequencyinput
             // 
@@ -781,14 +807,17 @@ namespace Budget_App_Main
             this.expensedatagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ExpenseDataGridDeleteButton});
             this.expensedatagridview.GridColor = System.Drawing.Color.LightGreen;
-            this.expensedatagridview.Location = new System.Drawing.Point(561, 38);
+            this.expensedatagridview.Location = new System.Drawing.Point(557, 38);
             this.expensedatagridview.MultiSelect = false;
             this.expensedatagridview.Name = "expensedatagridview";
             this.expensedatagridview.ReadOnly = true;
-            this.expensedatagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.expensedatagridview.RowHeadersVisible = false;
+            this.expensedatagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.expensedatagridview.ShowEditingIcon = false;
             this.expensedatagridview.Size = new System.Drawing.Size(1040, 571);
             this.expensedatagridview.TabIndex = 7;
+            expensedatagridview.CellClick += expensedatagridview_CellContentClick;
+            
             // 
             // ExpenseDataGridDeleteButton
             // 
@@ -797,28 +826,6 @@ namespace Budget_App_Main
             this.ExpenseDataGridDeleteButton.ReadOnly = true;
             this.ExpenseDataGridDeleteButton.Text = "Delete";
             this.ExpenseDataGridDeleteButton.UseColumnTextForButtonValue = true;
-            // 
-            // adddateinput
-            // 
-            this.adddateinput.Location = new System.Drawing.Point(202, 475);
-            this.adddateinput.Maximum = new decimal(new int[] {
-            31,
-            0,
-            0,
-            0});
-            this.adddateinput.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.adddateinput.Name = "adddateinput";
-            this.adddateinput.Size = new System.Drawing.Size(192, 20);
-            this.adddateinput.TabIndex = 14;
-            this.adddateinput.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // BudgetMainForm
             // 
@@ -844,10 +851,10 @@ namespace Budget_App_Main
             ((System.ComponentModel.ISupportInitialize)(this.paycheckdatagridview)).EndInit();
             this.TabExpense.ResumeLayout(false);
             this.TabExpense.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.adddateinput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addfrequencyinput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addamountinput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.expensedatagridview)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.adddateinput)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
