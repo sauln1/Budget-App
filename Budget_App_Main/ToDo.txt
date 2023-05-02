@@ -1,4 +1,4 @@
-1. AutoDebit value not being brought into checkbox.
+
 2. Merge Medicare, etc witholding with extra witholding (now other witholding).
 
 4. Add Expenses 'per month amount' field reflecting how much user owes per paycheck of that bill.

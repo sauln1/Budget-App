@@ -21,7 +21,7 @@ namespace Budget_App_Main
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<ExpenseModel>("SELECT * FROM Expense", new DynamicParameters());
+                var output = cnn.Query<ExpenseModel>("SELECT ID,Name,Amount,FrequencyInWeeks,IsSplit,Account,AutoDebit,DayOfMonth,MonthlyBillAmount FROM Expense", new DynamicParameters());
                 return output.ToList();
             }
         }
