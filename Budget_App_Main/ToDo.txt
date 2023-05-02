@@ -1,7 +1,7 @@
+1.Need to write fluid paycheck output.
 
-2. Merge Medicare, etc witholding with extra witholding (now other witholding).
 
-4. Add Expenses 'per month amount' field reflecting how much user owes per paycheck of that bill.
+4. Add Expenses 'per month amount' field reflecting how much user owes per paycheck of that bill???
 
-6. Calculations are wrong.
+
 7. All other databases should reflect debug

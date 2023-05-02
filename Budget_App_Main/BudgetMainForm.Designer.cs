@@ -33,13 +33,13 @@ namespace Budget_App_Main
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabBudget = new System.Windows.Forms.TabPage();
-            this.totalpaycheckexpensestext = new System.Windows.Forms.Label();
+            this.totalmonthlyexpensestext = new System.Windows.Forms.Label();
             this.totalannualexpensestext = new System.Windows.Forms.Label();
             this.fluidpaycheckincometext = new System.Windows.Forms.Label();
             this.fluidannualincometext = new System.Windows.Forms.Label();
-            this.netpaycheckincometext = new System.Windows.Forms.Label();
+            this.netmonthlyincometext = new System.Windows.Forms.Label();
             this.netannualincometext = new System.Windows.Forms.Label();
-            this.grosspaycheckincometext = new System.Windows.Forms.Label();
+            this.grossmonthlyincometexttext = new System.Windows.Forms.Label();
             this.grossannualincometext = new System.Windows.Forms.Label();
             this.totalpaycheckexpenseslabel = new System.Windows.Forms.Label();
             this.totalannualexpenseslabel = new System.Windows.Forms.Label();
@@ -47,7 +47,7 @@ namespace Budget_App_Main
             this.fluidannualincomelabel = new System.Windows.Forms.Label();
             this.netpaycheckincomelabel = new System.Windows.Forms.Label();
             this.netannualincomelabel = new System.Windows.Forms.Label();
-            this.grosspaycheckincomelabel = new System.Windows.Forms.Label();
+            this.grossmonthlyincometextlabel = new System.Windows.Forms.Label();
             this.grossannualincomelabel = new System.Windows.Forms.Label();
             this.TabPaycheck = new System.Windows.Forms.TabPage();
             this.extrawithinput = new System.Windows.Forms.NumericUpDown();
@@ -121,13 +121,13 @@ namespace Budget_App_Main
             // 
             // TabBudget
             // 
-            this.TabBudget.Controls.Add(this.totalpaycheckexpensestext);
+            this.TabBudget.Controls.Add(this.totalmonthlyexpensestext);
             this.TabBudget.Controls.Add(this.totalannualexpensestext);
             this.TabBudget.Controls.Add(this.fluidpaycheckincometext);
             this.TabBudget.Controls.Add(this.fluidannualincometext);
-            this.TabBudget.Controls.Add(this.netpaycheckincometext);
+            this.TabBudget.Controls.Add(this.netmonthlyincometext);
             this.TabBudget.Controls.Add(this.netannualincometext);
-            this.TabBudget.Controls.Add(this.grosspaycheckincometext);
+            this.TabBudget.Controls.Add(this.grossmonthlyincometexttext);
             this.TabBudget.Controls.Add(this.grossannualincometext);
             this.TabBudget.Controls.Add(this.totalpaycheckexpenseslabel);
             this.TabBudget.Controls.Add(this.totalannualexpenseslabel);
@@ -135,7 +135,7 @@ namespace Budget_App_Main
             this.TabBudget.Controls.Add(this.fluidannualincomelabel);
             this.TabBudget.Controls.Add(this.netpaycheckincomelabel);
             this.TabBudget.Controls.Add(this.netannualincomelabel);
-            this.TabBudget.Controls.Add(this.grosspaycheckincomelabel);
+            this.TabBudget.Controls.Add(this.grossmonthlyincometextlabel);
             this.TabBudget.Controls.Add(this.grossannualincomelabel);
             this.TabBudget.Location = new System.Drawing.Point(4, 22);
             this.TabBudget.Name = "TabBudget";
@@ -144,18 +144,18 @@ namespace Budget_App_Main
             this.TabBudget.Text = "Budget View";
             this.TabBudget.UseVisualStyleBackColor = true;
             // 
-            // totalpaycheckexpensestext
+            // totalmonthlyexpensestext
             // 
-            this.totalpaycheckexpensestext.AutoEllipsis = true;
-            this.totalpaycheckexpensestext.AutoSize = true;
-            this.totalpaycheckexpensestext.BackColor = System.Drawing.Color.LightGreen;
-            this.totalpaycheckexpensestext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.totalpaycheckexpensestext.Location = new System.Drawing.Point(253, 550);
-            this.totalpaycheckexpensestext.MinimumSize = new System.Drawing.Size(130, 2);
-            this.totalpaycheckexpensestext.Name = "totalpaycheckexpensestext";
-            this.totalpaycheckexpensestext.Size = new System.Drawing.Size(130, 15);
-            this.totalpaycheckexpensestext.TabIndex = 15;
-            this.totalpaycheckexpensestext.Text = "0";
+            this.totalmonthlyexpensestext.AutoEllipsis = true;
+            this.totalmonthlyexpensestext.AutoSize = true;
+            this.totalmonthlyexpensestext.BackColor = System.Drawing.Color.LightGreen;
+            this.totalmonthlyexpensestext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.totalmonthlyexpensestext.Location = new System.Drawing.Point(253, 550);
+            this.totalmonthlyexpensestext.MinimumSize = new System.Drawing.Size(130, 2);
+            this.totalmonthlyexpensestext.Name = "totalmonthlyexpensestext";
+            this.totalmonthlyexpensestext.Size = new System.Drawing.Size(130, 15);
+            this.totalmonthlyexpensestext.TabIndex = 15;
+            this.totalmonthlyexpensestext.Text = "0";
             // 
             // totalannualexpensestext
             // 
@@ -196,18 +196,18 @@ namespace Budget_App_Main
             this.fluidannualincometext.TabIndex = 12;
             this.fluidannualincometext.Text = "0";
             // 
-            // netpaycheckincometext
+            // netmonthlyincometext
             // 
-            this.netpaycheckincometext.AutoEllipsis = true;
-            this.netpaycheckincometext.AutoSize = true;
-            this.netpaycheckincometext.BackColor = System.Drawing.Color.Bisque;
-            this.netpaycheckincometext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.netpaycheckincometext.Location = new System.Drawing.Point(253, 250);
-            this.netpaycheckincometext.MinimumSize = new System.Drawing.Size(130, 2);
-            this.netpaycheckincometext.Name = "netpaycheckincometext";
-            this.netpaycheckincometext.Size = new System.Drawing.Size(130, 15);
-            this.netpaycheckincometext.TabIndex = 11;
-            this.netpaycheckincometext.Text = "0";
+            this.netmonthlyincometext.AutoEllipsis = true;
+            this.netmonthlyincometext.AutoSize = true;
+            this.netmonthlyincometext.BackColor = System.Drawing.Color.Bisque;
+            this.netmonthlyincometext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.netmonthlyincometext.Location = new System.Drawing.Point(253, 250);
+            this.netmonthlyincometext.MinimumSize = new System.Drawing.Size(130, 2);
+            this.netmonthlyincometext.Name = "netmonthlyincometext";
+            this.netmonthlyincometext.Size = new System.Drawing.Size(130, 15);
+            this.netmonthlyincometext.TabIndex = 11;
+            this.netmonthlyincometext.Text = "0";
             // 
             // netannualincometext
             // 
@@ -222,18 +222,18 @@ namespace Budget_App_Main
             this.netannualincometext.TabIndex = 10;
             this.netannualincometext.Text = "0";
             // 
-            // grosspaycheckincometext
+            // grossmonthlyincometexttext
             // 
-            this.grosspaycheckincometext.AutoEllipsis = true;
-            this.grosspaycheckincometext.AutoSize = true;
-            this.grosspaycheckincometext.BackColor = System.Drawing.Color.Bisque;
-            this.grosspaycheckincometext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.grosspaycheckincometext.Location = new System.Drawing.Point(253, 100);
-            this.grosspaycheckincometext.MinimumSize = new System.Drawing.Size(130, 2);
-            this.grosspaycheckincometext.Name = "grosspaycheckincometext";
-            this.grosspaycheckincometext.Size = new System.Drawing.Size(130, 15);
-            this.grosspaycheckincometext.TabIndex = 9;
-            this.grosspaycheckincometext.Text = "0";
+            this.grossmonthlyincometexttext.AutoEllipsis = true;
+            this.grossmonthlyincometexttext.AutoSize = true;
+            this.grossmonthlyincometexttext.BackColor = System.Drawing.Color.Bisque;
+            this.grossmonthlyincometexttext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.grossmonthlyincometexttext.Location = new System.Drawing.Point(253, 100);
+            this.grossmonthlyincometexttext.MinimumSize = new System.Drawing.Size(130, 2);
+            this.grossmonthlyincometexttext.Name = "grossmonthlyincometexttext";
+            this.grossmonthlyincometexttext.Size = new System.Drawing.Size(130, 15);
+            this.grossmonthlyincometexttext.TabIndex = 9;
+            this.grossmonthlyincometexttext.Text = "0";
             // 
             // grossannualincometext
             // 
@@ -291,7 +291,7 @@ namespace Budget_App_Main
             this.netpaycheckincomelabel.Name = "netpaycheckincomelabel";
             this.netpaycheckincomelabel.Size = new System.Drawing.Size(113, 13);
             this.netpaycheckincomelabel.TabIndex = 3;
-            this.netpaycheckincomelabel.Text = "Net Paycheck Income";
+            this.netpaycheckincomelabel.Text = "Net Monthly Income";
             // 
             // netannualincomelabel
             // 
@@ -302,14 +302,14 @@ namespace Budget_App_Main
             this.netannualincomelabel.TabIndex = 2;
             this.netannualincomelabel.Text = "Net Annual Income";
             // 
-            // grosspaycheckincomelabel
+            // grossmonthlyincometextlabel
             // 
-            this.grosspaycheckincomelabel.AutoSize = true;
-            this.grosspaycheckincomelabel.Location = new System.Drawing.Point(30, 100);
-            this.grosspaycheckincomelabel.Name = "grosspaycheckincomelabel";
-            this.grosspaycheckincomelabel.Size = new System.Drawing.Size(123, 13);
-            this.grosspaycheckincomelabel.TabIndex = 1;
-            this.grosspaycheckincomelabel.Text = "Gross Paycheck Income";
+            this.grossmonthlyincometextlabel.AutoSize = true;
+            this.grossmonthlyincometextlabel.Location = new System.Drawing.Point(30, 100);
+            this.grossmonthlyincometextlabel.Name = "grossmonthlyincometextlabel";
+            this.grossmonthlyincometextlabel.Size = new System.Drawing.Size(123, 13);
+            this.grossmonthlyincometextlabel.TabIndex = 1;
+            this.grossmonthlyincometextlabel.Text = "Gross Monthly Income";
             // 
             // grossannualincomelabel
             // 
@@ -881,7 +881,7 @@ namespace Budget_App_Main
         private System.Windows.Forms.CheckBox addautono;
         private System.Windows.Forms.CheckBox addautoyes;
         private Label netannualincomelabel;
-        private Label grosspaycheckincomelabel;
+        private Label grossmonthlyincometextlabel;
         private Label grossannualincomelabel;
         private DataGridViewButtonColumn ExpenseDataGridDeleteButton;
         private Label totalpaycheckexpenseslabel;
@@ -890,12 +890,12 @@ namespace Budget_App_Main
         private Label fluidannualincomelabel;
         private Label netpaycheckincomelabel;
         private Label grossannualincometext;
-        private Label grosspaycheckincometext;
-        private Label totalpaycheckexpensestext;
+        private Label grossmonthlyincometexttext;
+        private Label totalmonthlyexpensestext;
         private Label totalannualexpensestext;
         private Label fluidpaycheckincometext;
         private Label fluidannualincometext;
-        private Label netpaycheckincometext;
+        private Label netmonthlyincometext;
         private Label netannualincometext;
         private TabPage TabPaycheck;
         private Label paycheckfrequency;

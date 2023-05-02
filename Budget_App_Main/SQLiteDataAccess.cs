@@ -25,7 +25,7 @@ namespace Budget_App_Main
                 return output.ToList();
             }
         }
-        public static void SaveExpense(string name, decimal amount, int freq, string split, string account, string isauto, decimal dayofmonth, decimal monthly)
+        public static void SaveExpense(string name, string amount, int freq, string split, string account, string isauto, decimal dayofmonth, string monthly)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -48,7 +48,7 @@ namespace Budget_App_Main
                 return output.ToList();
             }
         }
-        public static void SavePaycheck(string source, decimal bt, decimal at, string freq, decimal fed, decimal st, decimal other, decimal extra, decimal total)
+        public static void SavePaycheck(string source, string bt, string at, string freq, string fed, string st, string other, string extra, string total)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {

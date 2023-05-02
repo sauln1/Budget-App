@@ -69,13 +69,13 @@ namespace Budget_App_Main
         {        
             //Add to the Database
             string nameParameter;
-            decimal amountParameter;
+            string amountParameter;
             int frequencyinweeksParameter;
             string splitParameter;
             string accountParameter;
             string autoParameter;
             int dayofmonthParameter;
-            decimal monthlybillamountParameter;
+            string monthlybillamountParameter;
             if (addnameinput.Text.Contains(@"'"))
             {
                 nameParameter = addnameinput.Text.Replace(@"'", @"''");
@@ -84,7 +84,7 @@ namespace Budget_App_Main
             {
                 nameParameter = addnameinput.Text;
             }
-            amountParameter = Convert.ToDecimal(addamountinput.Value);
+            amountParameter = Convert.ToString(addamountinput.Value);
             frequencyinweeksParameter = Convert.ToInt32(addfrequencyinput.Value);
             if (addsplityes.Checked)
             {
@@ -113,23 +113,23 @@ namespace Budget_App_Main
             dayofmonthParameter = Convert.ToInt32(adddateinput.Value);
             if (addfrequencyinput.Value == 1)
             {
-                monthlybillamountParameter = Convert.ToDecimal(addamountinput.Value) * 4;
+                monthlybillamountParameter = Convert.ToString(Convert.ToDecimal(addamountinput.Value) * 4);
             }
             else if (addfrequencyinput.Value == 2)
             {
-                monthlybillamountParameter = Convert.ToDecimal(addamountinput.Value) * 2;
+                monthlybillamountParameter = Convert.ToString(Convert.ToDecimal(addamountinput.Value) * 2);
             }
             else if (addfrequencyinput.Value == 3)
             {
-                monthlybillamountParameter = Convert.ToDecimal(Convert.ToDouble(addamountinput.Value) * 1.5);
+                monthlybillamountParameter = Convert.ToString(Convert.ToDecimal(Convert.ToDouble(addamountinput.Value) * 1.5));
             }
             else if (addfrequencyinput.Value == 4)
             {
-                monthlybillamountParameter = addamountinput.Value;
+                monthlybillamountParameter = Convert.ToString(addamountinput.Value);
             }
             else
             {
-                monthlybillamountParameter = Convert.ToDecimal(addamountinput.Value) / Convert.ToInt32(addfrequencyinput.Value);
+                monthlybillamountParameter = Convert.ToString(Convert.ToDecimal(Convert.ToDecimal(addamountinput.Value) / Convert.ToInt32(addfrequencyinput.Value)));
             };
             
             SQLiteDataAccess.SaveExpense(
@@ -159,14 +159,14 @@ namespace Budget_App_Main
         private void addpaycheckbutton_Click(object sender, EventArgs e)
         {
             string sourceParameter;
-            decimal amountbeforetaxParameter;
-            decimal amountaftertaxParameter;
+            string amountbeforetaxParameter;
+            string amountaftertaxParameter;
             string frequencyParameter;
-            decimal federalwitholdingParameter;
-            decimal statewitholdingParameter;
-            decimal otherwitholdingParameter;
-            decimal extrawitholdingParameter;
-            decimal totalmonthlyParameter;
+            string federalwitholdingParameter;
+            string statewitholdingParameter;
+            string otherwitholdingParameter;
+            string extrawitholdingParameter;
+            string totalmonthlyParameter;
 
             if (paychecksourceinput.Text.Contains(@"'"))
             {
@@ -176,27 +176,37 @@ namespace Budget_App_Main
             {
                 sourceParameter = paychecksourceinput.Text;
             }
-            amountbeforetaxParameter = paycheckamoutbtinput.Value;
-            amountaftertaxParameter = paycheckamountatinput.Value;
+            amountbeforetaxParameter = Convert.ToString(paycheckamoutbtinput.Value);
+            amountaftertaxParameter = Convert.ToString(paycheckamountatinput.Value);
             frequencyParameter = paycheckfrequencyinput.Text;
-            federalwitholdingParameter = totalfedwithinput.Value;
-            statewitholdingParameter = totalstatewithinput.Value;
-            otherwitholdingParameter = totalmedwithinput.Value;
-            extrawitholdingParameter = extrawithinput.Value;
+            federalwitholdingParameter = Convert.ToString(totalfedwithinput.Value);
+            statewitholdingParameter = Convert.ToString(totalstatewithinput.Value);
+            otherwitholdingParameter = Convert.ToString(totalmedwithinput.Value);
+            extrawitholdingParameter = Convert.ToString(extrawithinput.Value);
             if(paycheckfrequencyinput.Text == "Weekly")
             {
-                totalmonthlyParameter = paycheckamountatinput.Value * 4;
+                totalmonthlyParameter = Convert.ToString(paycheckamountatinput.Value * 4);
             }
             else if (paycheckfrequencyinput.Text == "Every 2 Weeks")
             {
-                totalmonthlyParameter = paycheckamountatinput.Value * 2;
+                totalmonthlyParameter = Convert.ToString(paycheckamountatinput.Value * 2);
             }
             else
             {
-                totalmonthlyParameter = paycheckamountatinput.Value;
+                totalmonthlyParameter = Convert.ToString(paycheckamountatinput.Value);
             }
 
-            SQLiteDataAccess.SavePaycheck(sourceParameter, amountbeforetaxParameter, amountaftertaxParameter, frequencyParameter, federalwitholdingParameter, statewitholdingParameter, otherwitholdingParameter, extrawitholdingParameter, totalmonthlyParameter);
+            SQLiteDataAccess.SavePaycheck(
+                sourceParameter,
+                amountbeforetaxParameter,
+                amountaftertaxParameter,
+                frequencyParameter,
+                federalwitholdingParameter,
+                statewitholdingParameter,
+                otherwitholdingParameter,
+                extrawitholdingParameter,
+                totalmonthlyParameter
+            );
 
             LoadPaycheckList();
             calculateValuesBudgetPage();
@@ -272,7 +282,101 @@ namespace Budget_App_Main
         }
         private void calculateValuesBudgetPage()
         {
+            //GrossAnnualIncome
+            decimal grossannualincomeParameter = 0;
+            for(int i = 0; i < paycheckdatagridview.Rows.Count; i++)
+            {
+                if(Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Weekly")
+                {
+                    grossannualincomeParameter += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[3].Value) * 52);
+                }
+                else if(Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Every 2 Weeks")
+                {
+                    grossannualincomeParameter += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[3].Value) * 26);
+                }
+                else
+                {
+                    grossannualincomeParameter += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[3].Value) * 12);
+                }
+            }
+            grossannualincometext.Text = Convert.ToString(grossannualincomeParameter);
 
+            //GrossMonthlyIncome
+            decimal grossmonthlyincometextParamenter = 0;
+            for (int i = 0; i < paycheckdatagridview.Rows.Count; i++)
+            {
+                if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Weekly")
+                {
+                    grossmonthlyincometextParamenter += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[3].Value) * 4);
+                }
+                else if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Every 2 Weeks")
+                {
+                    grossmonthlyincometextParamenter += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[3].Value) * 2);
+                }
+                else
+                {
+                    grossmonthlyincometextParamenter += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[3].Value));
+                }
+            }
+            grossmonthlyincometexttext.Text = Convert.ToString(grossmonthlyincometextParamenter);
+
+            //NetAnnualIncome
+            decimal netannualincomeParameter = 0;
+            for (int i = 0; i < paycheckdatagridview.Rows.Count; i++)
+            {
+                if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Weekly")
+                {
+                    netannualincomeParameter += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[4].Value) * 52);
+                }
+                else if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Every 2 Weeks")
+                {
+                    netannualincomeParameter += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[4].Value) * 26);
+                }
+                else
+                {
+                    netannualincomeParameter += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[4].Value) * 12);
+                }
+            }
+            netannualincometext.Text = Convert.ToString(netannualincomeParameter);
+
+            //NetMonthlyIncome
+            decimal netmonthlyincometextParamenter = 0;
+            for (int i = 0; i < paycheckdatagridview.Rows.Count; i++)
+            {
+                if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Weekly")
+                {
+                    netmonthlyincometextParamenter += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[4].Value) * 4);
+                }
+                else if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Every 2 Weeks")
+                {
+                    netmonthlyincometextParamenter += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[4].Value) * 2);
+                }
+                else
+                {
+                    netmonthlyincometextParamenter += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[4].Value));
+                }
+            }
+            netmonthlyincometext.Text = Convert.ToString(netmonthlyincometextParamenter);
+
+            // FluidAnnualIncome
+
+            // FluidPaycheckIncome
+
+            // TotalAnnualExpenses
+            decimal totalannualexpenseParameter = 0;
+            for (int i = 0; i < expensedatagridview.Rows.Count; i++)
+            {
+                totalannualexpenseParameter += (Convert.ToDecimal(expensedatagridview.Rows[i].Cells[9].Value)*12);
+            }
+            totalannualexpensestext.Text = Convert.ToString(totalannualexpenseParameter);
+
+            // TotalMonthlyExpeses
+            decimal totalmonthlyexpenseParameter = 0;
+            for (int i = 0; i < expensedatagridview.Rows.Count; i++)
+            {
+                totalmonthlyexpenseParameter += (Convert.ToDecimal(expensedatagridview.Rows[i].Cells[9].Value));
+            }
+            totalmonthlyexpensestext.Text = Convert.ToString(totalmonthlyexpenseParameter);
         }
     }
 }
