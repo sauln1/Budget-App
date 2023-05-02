@@ -1,7 +1,3 @@
-1.Need to write fluid paycheck output.
-
-
-4. Add Expenses 'per month amount' field reflecting how much user owes per paycheck of that bill???
-
-
-7. All other databases should reflect debug
+1. Add splitting logic
+2. Test calculations
+3. All other databases should reflect debug

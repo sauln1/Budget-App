@@ -18,6 +18,7 @@ namespace Budget_App_Main
             LoadExpenseList();
             LoadPaycheckList();
             InitComboItem();
+            calculateValuesBudgetPage();
         }
         private void LoadExpenseList()
         {
@@ -358,10 +359,6 @@ namespace Budget_App_Main
             }
             netmonthlyincometext.Text = Convert.ToString(netmonthlyincometextParamenter);
 
-            // FluidAnnualIncome
-
-            // FluidPaycheckIncome
-
             // TotalAnnualExpenses
             decimal totalannualexpenseParameter = 0;
             for (int i = 0; i < expensedatagridview.Rows.Count; i++)
@@ -377,6 +374,46 @@ namespace Budget_App_Main
                 totalmonthlyexpenseParameter += (Convert.ToDecimal(expensedatagridview.Rows[i].Cells[9].Value));
             }
             totalmonthlyexpensestext.Text = Convert.ToString(totalmonthlyexpenseParameter);
+
+            // FluidAnnualIncome
+            decimal fluidannualincomeParameter = (netannualincomeParameter - (totalmonthlyexpenseParameter*12));
+            fluidannualincometext.Text = Convert.ToString(fluidannualincomeParameter);
+
+            // FluidPaycheckIncome
+            decimal PaycheckIncome = 0;
+            decimal ExpensePerPaycheck = 0;
+            decimal PaycheckFluidIncome = 0;
+            for (int i = 0; i < paycheckdatagridview.Rows.Count; i++)
+            {
+                if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Weekly")
+                {
+                    for (int j = 0; j < expensedatagridview.Rows.Count; j++)
+                    {
+                        ExpensePerPaycheck += (Convert.ToDecimal(expensedatagridview.Rows[j].Cells[9].Value)) / 4;
+                    }
+                    PaycheckIncome += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[4].Value));
+                    PaycheckFluidIncome += PaycheckIncome - ExpensePerPaycheck;
+                }
+                else if (Convert.ToString(paycheckdatagridview.Rows[i].Cells[5].Value) == "Every 2 Weeks")
+                {
+                    for (int j = 0; j < expensedatagridview.Rows.Count; j++)
+                    {
+                        ExpensePerPaycheck += (Convert.ToDecimal(expensedatagridview.Rows[j].Cells[9].Value)) / 2;
+                    }
+                    PaycheckIncome += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[4].Value));
+                    PaycheckFluidIncome += PaycheckIncome - ExpensePerPaycheck;
+                }
+                else
+                {
+                    for (int j = 0; j < expensedatagridview.Rows.Count; j++)
+                    {
+                        ExpensePerPaycheck += (Convert.ToDecimal(expensedatagridview.Rows[j].Cells[9].Value));
+                    }
+                    PaycheckIncome += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[4].Value));
+                    PaycheckFluidIncome += PaycheckIncome - ExpensePerPaycheck;
+                }
+                fluidpaycheckincometext.Text = Convert.ToString(PaycheckFluidIncome);
+            }
         }
     }
 }
