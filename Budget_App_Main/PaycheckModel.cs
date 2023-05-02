@@ -4,12 +4,12 @@
     {
         public int ID { get; set; }
         public string Source { get; set; }
-        public decimal Amount_Before_Tax { get; set; }
-        public decimal Amount_After_Tax { get; set; }
+        public decimal AmountBeforeTax { get; set; }
+        public decimal AmountAfterTax { get; set; }
         public string Frequency { get; set; }
-        public decimal Federal_Witholding { get; set; }
-        public decimal State_Witholding { get; set; }
-        public decimal Med_SS_401K_Witholding { get; set; }
-        public decimal Extra_Witholding { get; set; }
+        public decimal FederalWitholding { get; set; }
+        public decimal StateWitholding { get; set; }
+        public decimal OtherWitholding { get; set; }
+        public decimal ExtraWitholding { get; set; }
     }
 }

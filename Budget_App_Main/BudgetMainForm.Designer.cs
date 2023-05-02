@@ -467,11 +467,11 @@ namespace Budget_App_Main
             // totalotherwitholding
             // 
             this.totalotherwitholding.AutoSize = true;
-            this.totalotherwitholding.Location = new System.Drawing.Point(330, 175);
+            this.totalotherwitholding.Location = new System.Drawing.Point(419, 175);
             this.totalotherwitholding.Name = "totalotherwitholding";
             this.totalotherwitholding.Size = new System.Drawing.Size(175, 13);
             this.totalotherwitholding.TabIndex = 15;
-            this.totalotherwitholding.Text = "Total Medical, SS, 401K Witholding";
+            this.totalotherwitholding.Text = "Other Witholding";
             // 
             // totalstatewitholding
             // 

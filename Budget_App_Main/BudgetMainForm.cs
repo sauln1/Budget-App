@@ -164,7 +164,7 @@ namespace Budget_App_Main
             string frequencyParameter;
             decimal federalwitholdingParameter;
             decimal statewitholdingParameter;
-            decimal medicarewitholdingParameter;
+            decimal otherwitholdingParameter;
             decimal extrawitholdingParameter;
             decimal totalmonthlyParameter;
 
@@ -181,7 +181,7 @@ namespace Budget_App_Main
             frequencyParameter = paycheckfrequencyinput.Text;
             federalwitholdingParameter = totalfedwithinput.Value;
             statewitholdingParameter = totalstatewithinput.Value;
-            medicarewitholdingParameter = totalmedwithinput.Value;
+            otherwitholdingParameter = totalmedwithinput.Value;
             extrawitholdingParameter = extrawithinput.Value;
             if(paycheckfrequencyinput.Text == "Weekly")
             {
@@ -196,7 +196,7 @@ namespace Budget_App_Main
                 totalmonthlyParameter = paycheckamountatinput.Value;
             }
 
-            SQLiteDataAccess.SavePaycheck(sourceParameter, amountbeforetaxParameter, amountaftertaxParameter, frequencyParameter, federalwitholdingParameter, statewitholdingParameter, medicarewitholdingParameter, extrawitholdingParameter, totalmonthlyParameter);
+            SQLiteDataAccess.SavePaycheck(sourceParameter, amountbeforetaxParameter, amountaftertaxParameter, frequencyParameter, federalwitholdingParameter, statewitholdingParameter, otherwitholdingParameter, extrawitholdingParameter, totalmonthlyParameter);
 
             LoadPaycheckList();
             calculateValuesBudgetPage();

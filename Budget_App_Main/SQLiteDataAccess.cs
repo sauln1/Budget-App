@@ -48,11 +48,11 @@ namespace Budget_App_Main
                 return output.ToList();
             }
         }
-        public static void SavePaycheck(string source, decimal bt, decimal at, string freq, decimal fed, decimal st, decimal med, decimal extra, decimal total)
+        public static void SavePaycheck(string source, decimal bt, decimal at, string freq, decimal fed, decimal st, decimal other, decimal extra, decimal total)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute($"INSERT INTO Paycheck (Source, AmountBeforeTax, AmountAfterTax, Frequency, FederalWitholding, StateWitholding, MedicareSS401KWitholding, ExtraWitholding, TotalMonthly) VALUES ('{source}',{bt},{at},'{freq}',{fed},{st},{med},{extra},{total})");
+                cnn.Execute($"INSERT INTO Paycheck (Source, AmountBeforeTax, AmountAfterTax, Frequency, FederalWitholding, StateWitholding, OtherWitholding, ExtraWitholding, TotalMonthly) VALUES ('{source}',{bt},{at},'{freq}',{fed},{st},{other},{extra},{total})");
             }
         }
         public static void DeletePaycheck(int id)
