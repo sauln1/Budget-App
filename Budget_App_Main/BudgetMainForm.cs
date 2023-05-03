@@ -132,17 +132,33 @@ namespace Budget_App_Main
             {
                 monthlybillamountParameter = Convert.ToString(Convert.ToDecimal(Convert.ToDecimal(addamountinput.Value) / Convert.ToInt32(addfrequencyinput.Value)));
             };
-            
-            SQLiteDataAccess.SaveExpense(
-                nameParameter,
-                amountParameter,
-                frequencyinweeksParameter,
-                splitParameter,
-                accountParameter,
-                autoParameter,
-                dayofmonthParameter,
-                monthlybillamountParameter
-            );
+
+            if (splitParameter == "true")
+            {
+                SQLiteDataAccess.SaveExpense(
+                    nameParameter,
+                    amountParameter,
+                    frequencyinweeksParameter,
+                    splitParameter,
+                    accountParameter,
+                    autoParameter,
+                    dayofmonthParameter,
+                    Convert.ToString(Convert.ToDecimal(monthlybillamountParameter) / 2)
+                );
+            }
+            else
+            {
+                SQLiteDataAccess.SaveExpense(
+                    nameParameter,
+                    amountParameter,
+                    frequencyinweeksParameter,
+                    splitParameter,
+                    accountParameter,
+                    autoParameter,
+                    dayofmonthParameter,
+                    monthlybillamountParameter
+                );
+            }
 
             LoadExpenseList();
             calculateValuesBudgetPage();

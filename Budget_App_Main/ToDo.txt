@@ -1,3 +1,6 @@
 1. Add splitting logic
-2. Test calculations
+2. Adjust MonthlyBillAmount value. This should base off a total annual amount divided by 12.
 3. All other databases should reflect debug
+4. All decimals round to nearest 100th
+5. Leaving day of month blank results in last date used
+6. Add 'What I'm Owed' on Budget View summing up all split bills
