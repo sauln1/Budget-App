@@ -130,7 +130,7 @@ namespace Budget_App_Main
             }
             else
             {
-                monthlybillamountParameter = Convert.ToString(Convert.ToDecimal(Convert.ToDecimal(addamountinput.Value) / Convert.ToInt32(addfrequencyinput.Value)));
+                monthlybillamountParameter = Convert.ToString(Convert.ToDecimal(Convert.ToDecimal(addamountinput.Value) / Convert.ToInt32(addfrequencyinput.Value))*4);
             };
 
             if (splitParameter == "true")
