@@ -1,6 +1,6 @@
 
 
 3. All other databases should reflect debug
-4. All decimals round to nearest 100th
-5. Leaving day of month blank results in last date used
+
+5. Leaving day of month blank results in last date used > check if dayofmonth is empty, if so then pass ''
 6. Add 'What I'm Owed' on Budget View summing up all split bills

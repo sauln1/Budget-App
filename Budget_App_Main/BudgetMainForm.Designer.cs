@@ -817,10 +817,6 @@ namespace Budget_App_Main
             this.expensedatagridview.Size = new System.Drawing.Size(1040, 571);
             this.expensedatagridview.TabIndex = 7;
             expensedatagridview.CellClick += expensedatagridview_CellContentClick;
-            for (int i = 0; i < this.expensedatagridview.Columns.Count; i++)
-            {
-                this.expensedatagridview.Columns[i].DefaultCellStyle.Format = "0.00";
-            }
             // 
             // ExpenseDataGridDeleteButton
             // 
