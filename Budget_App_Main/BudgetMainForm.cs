@@ -85,7 +85,7 @@ namespace Budget_App_Main
             {
                 nameParameter = addnameinput.Text;
             }
-            amountParameter = Convert.ToString(addamountinput.Value);
+            amountParameter = Convert.ToString(Math.Round(addamountinput.Value,2));
             frequencyinweeksParameter = Convert.ToInt32(addfrequencyinput.Value);
             if (addsplityes.Checked)
             {
@@ -114,23 +114,23 @@ namespace Budget_App_Main
             dayofmonthParameter = Convert.ToInt32(adddateinput.Value);
             if (addfrequencyinput.Value == 1)
             {
-                monthlybillamountParameter = Convert.ToString(Convert.ToDecimal(addamountinput.Value) * 4);
+                monthlybillamountParameter = Convert.ToString(Math.Round(Convert.ToDecimal(addamountinput.Value) * 4,2));
             }
             else if (addfrequencyinput.Value == 2)
             {
-                monthlybillamountParameter = Convert.ToString(Convert.ToDecimal(addamountinput.Value) * 2);
+                monthlybillamountParameter = Convert.ToString(Math.Round(Convert.ToDecimal(addamountinput.Value) * 2,2));
             }
             else if (addfrequencyinput.Value == 3)
             {
-                monthlybillamountParameter = Convert.ToString(Convert.ToDecimal(Convert.ToDouble(addamountinput.Value) * 1.5));
+                monthlybillamountParameter = Convert.ToString(Math.Round(Convert.ToDecimal(Convert.ToDouble(addamountinput.Value) * 1.5),2));
             }
             else if (addfrequencyinput.Value == 4)
             {
-                monthlybillamountParameter = Convert.ToString(addamountinput.Value);
+                monthlybillamountParameter = Convert.ToString(Math.Round(addamountinput.Value,2));
             }
             else
             {
-                monthlybillamountParameter = Convert.ToString(Convert.ToDecimal(Convert.ToDecimal(addamountinput.Value) / Convert.ToInt32(addfrequencyinput.Value))*4);
+                monthlybillamountParameter = Convert.ToString(Math.Round(Convert.ToDecimal(Convert.ToDecimal(addamountinput.Value) / Convert.ToInt32(addfrequencyinput.Value))*4,2));
             };
 
             if (splitParameter == "true")
@@ -143,7 +143,7 @@ namespace Budget_App_Main
                     accountParameter,
                     autoParameter,
                     dayofmonthParameter,
-                    Convert.ToString(Convert.ToDecimal(monthlybillamountParameter) / 2)
+                    Convert.ToString(Math.Round(Convert.ToDecimal(monthlybillamountParameter) / 2, 2))
                 );
             }
             else
@@ -193,13 +193,13 @@ namespace Budget_App_Main
             {
                 sourceParameter = paychecksourceinput.Text;
             }
-            amountbeforetaxParameter = Convert.ToString(paycheckamoutbtinput.Value);
-            amountaftertaxParameter = Convert.ToString(paycheckamountatinput.Value);
+            amountbeforetaxParameter = Convert.ToString(Math.Round(paycheckamoutbtinput.Value,2));
+            amountaftertaxParameter = Convert.ToString(Math.Round(paycheckamountatinput.Value,2));
             frequencyParameter = paycheckfrequencyinput.Text;
-            federalwitholdingParameter = Convert.ToString(totalfedwithinput.Value);
-            statewitholdingParameter = Convert.ToString(totalstatewithinput.Value);
-            otherwitholdingParameter = Convert.ToString(totalmedwithinput.Value);
-            extrawitholdingParameter = Convert.ToString(extrawithinput.Value);
+            federalwitholdingParameter = Convert.ToString(Math.Round(totalfedwithinput.Value,2));
+            statewitholdingParameter = Convert.ToString(Math.Round(totalstatewithinput.Value,2));
+            otherwitholdingParameter = Convert.ToString(Math.Round(totalmedwithinput.Value,2));
+            extrawitholdingParameter = Convert.ToString(Math.Round(extrawithinput.Value, 2));
             if(paycheckfrequencyinput.Text == "Weekly")
             {
                 totalmonthlyParameter = Convert.ToString(paycheckamountatinput.Value * 4);
@@ -272,7 +272,6 @@ namespace Budget_App_Main
             paycheckfrequencyinput.DisplayMember = "Text";
             paycheckfrequencyinput.ValueMember = "ID";
         }
-        
         private void expensedatagridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //Check if click is on specific column 
@@ -316,7 +315,7 @@ namespace Budget_App_Main
                     grossannualincomeParameter += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[3].Value) * 12);
                 }
             }
-            grossannualincometext.Text = Convert.ToString(grossannualincomeParameter);
+            grossannualincometext.Text = Convert.ToString(Math.Round(grossannualincomeParameter,2));
 
             //GrossMonthlyIncome
             decimal grossmonthlyincometextParamenter = 0;
@@ -335,7 +334,7 @@ namespace Budget_App_Main
                     grossmonthlyincometextParamenter += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[3].Value));
                 }
             }
-            grossmonthlyincometexttext.Text = Convert.ToString(grossmonthlyincometextParamenter);
+            grossmonthlyincometexttext.Text = Convert.ToString(Math.Round(grossmonthlyincometextParamenter,2));
 
             //NetAnnualIncome
             decimal netannualincomeParameter = 0;
@@ -354,7 +353,7 @@ namespace Budget_App_Main
                     netannualincomeParameter += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[4].Value) * 12);
                 }
             }
-            netannualincometext.Text = Convert.ToString(netannualincomeParameter);
+            netannualincometext.Text = Convert.ToString(Math.Round(netannualincomeParameter,2));
 
             //NetMonthlyIncome
             decimal netmonthlyincometextParamenter = 0;
@@ -373,7 +372,7 @@ namespace Budget_App_Main
                     netmonthlyincometextParamenter += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[4].Value));
                 }
             }
-            netmonthlyincometext.Text = Convert.ToString(netmonthlyincometextParamenter);
+            netmonthlyincometext.Text = Convert.ToString(Math.Round(netmonthlyincometextParamenter,2));
 
             // TotalAnnualExpenses
             decimal totalannualexpenseParameter = 0;
@@ -381,7 +380,7 @@ namespace Budget_App_Main
             {
                 totalannualexpenseParameter += (Convert.ToDecimal(expensedatagridview.Rows[i].Cells[9].Value)*12);
             }
-            totalannualexpensestext.Text = Convert.ToString(totalannualexpenseParameter);
+            totalannualexpensestext.Text = Convert.ToString(Math.Round(totalannualexpenseParameter,2));
 
             // TotalMonthlyExpeses
             decimal totalmonthlyexpenseParameter = 0;
@@ -389,11 +388,11 @@ namespace Budget_App_Main
             {
                 totalmonthlyexpenseParameter += (Convert.ToDecimal(expensedatagridview.Rows[i].Cells[9].Value));
             }
-            totalmonthlyexpensestext.Text = Convert.ToString(totalmonthlyexpenseParameter);
+            totalmonthlyexpensestext.Text = Convert.ToString(Math.Round(totalmonthlyexpenseParameter,2));
 
             // FluidAnnualIncome
             decimal fluidannualincomeParameter = (netannualincomeParameter - (totalmonthlyexpenseParameter*12));
-            fluidannualincometext.Text = Convert.ToString(fluidannualincomeParameter);
+            fluidannualincometext.Text = Convert.ToString(Math.Round(fluidannualincomeParameter,2));
 
             // FluidPaycheckIncome
             decimal PaycheckIncome = 0;
@@ -428,7 +427,7 @@ namespace Budget_App_Main
                     PaycheckIncome += (Convert.ToDecimal(paycheckdatagridview.Rows[i].Cells[4].Value));
                     PaycheckFluidIncome += PaycheckIncome - ExpensePerPaycheck;
                 }
-                fluidpaycheckincometext.Text = Convert.ToString(PaycheckFluidIncome);
+                fluidpaycheckincometext.Text = Convert.ToString(Math.Round(PaycheckFluidIncome,2));
             }
         }
     }
