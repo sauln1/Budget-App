@@ -91,6 +91,8 @@ namespace Budget_App_Main
             this.expenselistlabel = new System.Windows.Forms.Label();
             this.expensedatagridview = new System.Windows.Forms.DataGridView();
             this.ExpenseDataGridDeleteButton = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.totalowedtomelabel = new System.Windows.Forms.Label();
+            this.totalowedtometext = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.TabBudget.SuspendLayout();
             this.TabPaycheck.SuspendLayout();
@@ -289,7 +291,7 @@ namespace Budget_App_Main
             this.netpaycheckincomelabel.AutoSize = true;
             this.netpaycheckincomelabel.Location = new System.Drawing.Point(30, 250);
             this.netpaycheckincomelabel.Name = "netpaycheckincomelabel";
-            this.netpaycheckincomelabel.Size = new System.Drawing.Size(113, 13);
+            this.netpaycheckincomelabel.Size = new System.Drawing.Size(102, 13);
             this.netpaycheckincomelabel.TabIndex = 3;
             this.netpaycheckincomelabel.Text = "Net Monthly Income";
             // 
@@ -307,7 +309,7 @@ namespace Budget_App_Main
             this.grossmonthlyincometextlabel.AutoSize = true;
             this.grossmonthlyincometextlabel.Location = new System.Drawing.Point(30, 100);
             this.grossmonthlyincometextlabel.Name = "grossmonthlyincometextlabel";
-            this.grossmonthlyincometextlabel.Size = new System.Drawing.Size(123, 13);
+            this.grossmonthlyincometextlabel.Size = new System.Drawing.Size(112, 13);
             this.grossmonthlyincometextlabel.TabIndex = 1;
             this.grossmonthlyincometextlabel.Text = "Gross Monthly Income";
             // 
@@ -469,7 +471,7 @@ namespace Budget_App_Main
             this.totalotherwitholding.AutoSize = true;
             this.totalotherwitholding.Location = new System.Drawing.Point(419, 175);
             this.totalotherwitholding.Name = "totalotherwitholding";
-            this.totalotherwitholding.Size = new System.Drawing.Size(175, 13);
+            this.totalotherwitholding.Size = new System.Drawing.Size(86, 13);
             this.totalotherwitholding.TabIndex = 15;
             this.totalotherwitholding.Text = "Other Witholding";
             // 
@@ -508,7 +510,6 @@ namespace Budget_App_Main
             this.paycheckdatagridview.AllowUserToResizeColumns = false;
             this.paycheckdatagridview.AllowUserToResizeRows = false;
             this.paycheckdatagridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.paycheckdatagridview.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.None;
             this.paycheckdatagridview.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.paycheckdatagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.paycheckdatagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -802,7 +803,6 @@ namespace Budget_App_Main
             this.expensedatagridview.AllowUserToResizeColumns = false;
             this.expensedatagridview.AllowUserToResizeRows = false;
             this.expensedatagridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.expensedatagridview.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.None;
             this.expensedatagridview.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.expensedatagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.expensedatagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -827,11 +827,35 @@ namespace Budget_App_Main
             this.ExpenseDataGridDeleteButton.UseColumnTextForButtonValue = true;
             this.ExpenseDataGridDeleteButton.Width = 44;
             // 
+            // totalowedtomelabel
+            // 
+            this.totalowedtomelabel.AutoSize = true;
+            this.totalowedtomelabel.Location = new System.Drawing.Point(759, 21);
+            this.totalowedtomelabel.Name = "totalowedtomelabel";
+            this.totalowedtomelabel.Size = new System.Drawing.Size(92, 13);
+            this.totalowedtomelabel.TabIndex = 8;
+            this.totalowedtomelabel.Text = "Total Owed to Me";
+            // 
+            // totalowedtometext
+            // 
+            this.totalowedtometext.AutoEllipsis = true;
+            this.totalowedtometext.AutoSize = true;
+            this.totalowedtometext.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.totalowedtometext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.totalowedtometext.Location = new System.Drawing.Point(857, 19);
+            this.totalowedtometext.MinimumSize = new System.Drawing.Size(130, 2);
+            this.totalowedtometext.Name = "totalowedtometext";
+            this.totalowedtometext.Size = new System.Drawing.Size(130, 15);
+            this.totalowedtometext.TabIndex = 16;
+            this.totalowedtometext.Text = "0";
+            // 
             // BudgetMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1605, 621);
+            this.Controls.Add(this.totalowedtometext);
+            this.Controls.Add(this.totalowedtomelabel);
             this.Controls.Add(this.expensedatagridview);
             this.Controls.Add(this.expenselistlabel);
             this.Controls.Add(this.tabControl1);
@@ -921,6 +945,8 @@ namespace Budget_App_Main
         private NumericUpDown addamountinput;
         private NumericUpDown addfrequencyinput;
         private NumericUpDown adddateinput;
+        private Label totalowedtomelabel;
+        private Label totalowedtometext;
     }
 }
 
