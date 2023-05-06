@@ -91,8 +91,8 @@ namespace Budget_App_Main
             this.expenselistlabel = new System.Windows.Forms.Label();
             this.expensedatagridview = new System.Windows.Forms.DataGridView();
             this.ExpenseDataGridDeleteButton = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.totalowedtomelabel = new System.Windows.Forms.Label();
-            this.totalowedtometext = new System.Windows.Forms.Label();
+            this.monthlytotalowedtomelabel = new System.Windows.Forms.Label();
+            this.monthlytotalowedtometext = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.TabBudget.SuspendLayout();
             this.TabPaycheck.SuspendLayout();
@@ -827,35 +827,35 @@ namespace Budget_App_Main
             this.ExpenseDataGridDeleteButton.UseColumnTextForButtonValue = true;
             this.ExpenseDataGridDeleteButton.Width = 44;
             // 
-            // totalowedtomelabel
+            // monthlytotalowedtomelabel
             // 
-            this.totalowedtomelabel.AutoSize = true;
-            this.totalowedtomelabel.Location = new System.Drawing.Point(759, 21);
-            this.totalowedtomelabel.Name = "totalowedtomelabel";
-            this.totalowedtomelabel.Size = new System.Drawing.Size(92, 13);
-            this.totalowedtomelabel.TabIndex = 8;
-            this.totalowedtomelabel.Text = "Total Owed to Me";
+            this.monthlytotalowedtomelabel.AutoSize = true;
+            this.monthlytotalowedtomelabel.Location = new System.Drawing.Point(759, 21);
+            this.monthlytotalowedtomelabel.Name = "monthlytotalowedtomelabel";
+            this.monthlytotalowedtomelabel.Size = new System.Drawing.Size(92, 13);
+            this.monthlytotalowedtomelabel.TabIndex = 8;
+            this.monthlytotalowedtomelabel.Text = "Monthly Total Owed to Me";
             // 
-            // totalowedtometext
+            // monthlytotalowedtometext
             // 
-            this.totalowedtometext.AutoEllipsis = true;
-            this.totalowedtometext.AutoSize = true;
-            this.totalowedtometext.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.totalowedtometext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.totalowedtometext.Location = new System.Drawing.Point(857, 19);
-            this.totalowedtometext.MinimumSize = new System.Drawing.Size(130, 2);
-            this.totalowedtometext.Name = "totalowedtometext";
-            this.totalowedtometext.Size = new System.Drawing.Size(130, 15);
-            this.totalowedtometext.TabIndex = 16;
-            this.totalowedtometext.Text = "0";
+            this.monthlytotalowedtometext.AutoEllipsis = true;
+            this.monthlytotalowedtometext.AutoSize = true;
+            this.monthlytotalowedtometext.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.monthlytotalowedtometext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.monthlytotalowedtometext.Location = new System.Drawing.Point(857, 19);
+            this.monthlytotalowedtometext.MinimumSize = new System.Drawing.Size(130, 2);
+            this.monthlytotalowedtometext.Name = "monthlytotalowedtometext";
+            this.monthlytotalowedtometext.Size = new System.Drawing.Size(130, 15);
+            this.monthlytotalowedtometext.TabIndex = 16;
+            this.monthlytotalowedtometext.Text = "0";
             // 
             // BudgetMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1605, 621);
-            this.Controls.Add(this.totalowedtometext);
-            this.Controls.Add(this.totalowedtomelabel);
+            this.Controls.Add(this.monthlytotalowedtometext);
+            this.Controls.Add(this.monthlytotalowedtomelabel);
             this.Controls.Add(this.expensedatagridview);
             this.Controls.Add(this.expenselistlabel);
             this.Controls.Add(this.tabControl1);
@@ -945,8 +945,8 @@ namespace Budget_App_Main
         private NumericUpDown addamountinput;
         private NumericUpDown addfrequencyinput;
         private NumericUpDown adddateinput;
-        private Label totalowedtomelabel;
-        private Label totalowedtometext;
+        private Label monthlytotalowedtomelabel;
+        private Label monthlytotalowedtometext;
     }
 }
 

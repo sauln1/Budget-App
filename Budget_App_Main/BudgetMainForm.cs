@@ -429,6 +429,16 @@ namespace Budget_App_Main
                 }
                 fluidpaycheckincometext.Text = Convert.ToString(Math.Round(PaycheckFluidIncome,2));
             }
+            //TotalOwedToMe
+            decimal TotalOwedToMeParameter = 0;
+            for (int i = 0; i < expensedatagridview.Rows.Count; i++)
+            {
+                if(Convert.ToBoolean(expensedatagridview.Rows[i].Cells[5].Value) == true)
+                {
+                    TotalOwedToMeParameter += Convert.ToDecimal(expensedatagridview.Rows[i].Cells[9].Value) / 2;
+                }
+                monthlytotalowedtometext.Text = Convert.ToString(Math.Round(TotalOwedToMeParameter,2));
+            }
         }
     }
 }
