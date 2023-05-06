@@ -842,7 +842,7 @@ namespace Budget_App_Main
             this.monthlytotalowedtometext.AutoSize = true;
             this.monthlytotalowedtometext.BackColor = System.Drawing.Color.LightSteelBlue;
             this.monthlytotalowedtometext.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.monthlytotalowedtometext.Location = new System.Drawing.Point(857, 19);
+            this.monthlytotalowedtometext.Location = new System.Drawing.Point(900, 19);
             this.monthlytotalowedtometext.MinimumSize = new System.Drawing.Size(130, 2);
             this.monthlytotalowedtometext.Name = "monthlytotalowedtometext";
             this.monthlytotalowedtometext.Size = new System.Drawing.Size(130, 15);
